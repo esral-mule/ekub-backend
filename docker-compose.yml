@@ -1,0 +1,27 @@
+version: "3"
+services:
+  qna:
+    build: .
+    command: npm run start
+    environment:
+      - NODE_ENV=production
+      - MONGO_URI=mongodb://mongodb:27017/qna
+      - PORT=8000
+      - JWT_SECRET=bA2xcjpf8y5aSUFsNB2qN5yymUBSs6es3qHoFpGkec75RCeBb8cpKauGefw5qy4
+      - JWT_EXPIRATION_MINUTES=150
+      - RATE_LIMIT_TIME=15
+      - RATE_LIMIT_REQUEST=15
+    volumes:
+      - .:/app
+    ports:
+      - "80:8000"
+    links:
+      - mongodb
+    depends_on:
+      - mongodb
+
+  mongodb:
+    image: mongo
+    ports:
+      - "27017:27017"
+  

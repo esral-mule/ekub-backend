@@ -1,0 +1,26 @@
+{
+	"extends": [
+		"airbnb-base",
+		"prettier"
+	],
+	"env": {
+		"node": true,
+		"mocha": true
+	},
+	"rules": {
+		"no-console": 0,
+		"no-plusplus": 0,
+		"no-underscore-dangle": 0,
+		"no-unused-vars": 1,
+		"no-use-before-define": [
+			"error",
+			{
+				"variables": false
+			}
+		],
+		"no-multi-str": 0
+	},
+	"parserOptions": {
+		"ecmaVersion": 2018
+	}
+}
