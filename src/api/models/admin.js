@@ -1,4 +1,8 @@
-const { Schema, model, Types } = require("mongoose");
+const {
+  Schema,
+  model,
+  Types
+} = require("mongoose");
 const bcrypt = require("bcryptjs");
 const Jwt = require("jsonwebtoken");
 const moment = require("moment");
@@ -21,44 +25,41 @@ const {
   jwtSecret,
 } = require("../../config/env-vars");
 
-const AdminModel = new Schema(
-  {
-    fullName: {
-      type: String,
-      required: true,
-      trim: true,
-      minlength: 5,
-    },
-    phoneNumber: {
-      type: String,
-      required: true,
-      unique: true,
-      trim: true,
-    },
-    username: {
-      type: String,
-      unique: true,
-      trim: true,
-    },
-    profilePicture: {
-      type: String,
-      default: DEFAULT_IMAGE,
-    },
-    role: {
-      type: String,
-      enum: ROLES,
-      default: "user",
-    },
-    password: {
-      type: String,
-      required: true,
-      minlength: 6,
-    },
+const AdminModel = new Schema({
+  fullName: {
+    type: String,
+    required: true,
+    trim: true,
+    minlength: 5,
   },
-  {
-    timestamps: true,
-  }
-);
+  phoneNumber: {
+    type: String,
+    required: true,
+    unique: true,
+    trim: true,
+  },
+  username: {
+    type: String,
+    unique: true,
+    trim: true,
+  },
+  profilePicture: {
+    type: String,
+    default: DEFAULT_IMAGE,
+  },
+  role: {
+    type: String,
+    enum: ROLES,
+    default: "user",
+  },
+  password: {
+    type: String,
+    required: true,
+    minlength: 6,
+  },
+}, {
+  timestamps: true,
+});
 
 AdminModel.pre("save", async function save(next) {
   try {
@@ -103,17 +104,15 @@ AdminModel.method({
 });
 
 AdminModel.statics = {
-    async get(id) {
+  async get(id) {
     if (!Types.ObjectId.isValid(id)) {
       throw new APIError({
         message: VALIDATION_ERROR,
-        errors: [
-          {
-            field: "id",
-            location: "params",
-            messages: "Please enter valid Admin ID",
-          },
-        ],
+        errors: [{
+          field: "id",
+          location: "params",
+          messages: "Please enter valid Admin ID",
+        }, ],
         status: NOT_FOUND,
       });
     }
@@ -126,8 +125,11 @@ AdminModel.statics = {
     return admin;
   },
 
-    async ValidateAdminAndGenerateToken(options) {
-    const { phoneNumber, password } = options;
+  async ValidateAdminAndGenerateToken(options) {
+    const {
+      phoneNumber,
+      password
+    } = options;
     const admin = await this.findOne({
       phoneNumber,
     }).exec();
@@ -149,7 +151,7 @@ AdminModel.statics = {
     };
   },
 
-    checkDuplication(error) {
+  checkDuplication(error) {
     if (
       error.code === 11000 &&
       (error.name === "BulkWriteError" || error.name === "MongoError")
@@ -159,13 +161,11 @@ AdminModel.statics = {
         return new APIError({
           message: PHONE_NUMBER_EXISTS,
           status: BAD_REQUEST,
-          errors: [
-            {
-              field: "phoneNumber",
-              location: "body",
-              messages: "Phonenumber is already in use",
-            },
-          ],
+          errors: [{
+            field: "phoneNumber",
+            location: "body",
+            messages: "Phonenumber is already in use",
+          }, ],
         });
       }
     }

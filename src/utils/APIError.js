@@ -1,7 +1,9 @@
-const { INTERNAL_SERVER_ERROR } = require('./constants');
+const {
+  INTERNAL_SERVER_ERROR
+} = require('./constants');
 
 class APIError extends Error {
-    constructor({
+  constructor({
     message,
     stack,
     errors = [],

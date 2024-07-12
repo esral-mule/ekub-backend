@@ -175,6 +175,7 @@ UserModel.statics = {
         });
       }
     }
+    console.log(error)
     return error;
   },
 };

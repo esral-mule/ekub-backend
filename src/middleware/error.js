@@ -2,10 +2,18 @@ const { ValidationError } = require('express-validation');
 const APIError = require('../utils/APIError');
 const { env } = require('../config/env-vars');
 
+
 const Handler = (err, req, res, next) => {
+  let _message = ""
+  if (err.stack.indexOf("MongoServer") !== -1) {
+    const _err = err.message.split(" ");
+    const type = _err[_err.indexOf("index:")+1]
+    const coll = _err.slice(1, _err.indexOf("collection:")-1).join(' ')
+    _message = `${coll} ${type}`
+  }
   const response = {
     code: err.status || 500,
-    message: err.message,
+    message: _message,
     errors: err.errors,
     stack: err.stack,
   };
