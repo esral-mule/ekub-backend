@@ -21,59 +21,50 @@ const {
   jwtSecret,
 } = require("../../config/env-vars");
 
-const UserModel = new Schema(
+const EqubTypeModel = new Schema(
   {
-    fullName: {
+    name: {
       type: String,
       required: true,
       trim: true,
       minlength: 5,
     },
-    phoneNumber: {
-      type: String,
-      required: true,
-      unique: true,
-      trim: true,
-    },
-    username: {
+    equb_id: {
       type: String,
       unique: true,
       trim: true,
-    },
-    profilePicture: {
-      type: String,
-      default: DEFAULT_IMAGE,
-    },
-    role: {
-      type: String,
-      enum: ROLES,
-      default: "user",
-    },
-    password: {
-      type: String,
       required: true,
-      minlength: 6,
     },
-    equbName: {
-      type: String,
-      required: true,
-      minlength: 6
+    period: {
+        type: String,
+        enum: ['daily', 'weekly', 'monthly', "custome"],
+        default: "weekly",
+        required: true,
     },
-    isActive: {
-      type: Boolean,
-      default: true
+    contributionDay: {
+        type: Number,
+        required: true,
     },
-    // total members
-    // representative repName
-    // cycle
-    // round
+    lotteryDay: {
+      type: Number,
+    },
+    maxContribution: {
+        type: Number,
+        required: true
+    },
+    // levels: [
+    //     {
+    //         name: String,
+    //         amount: Number,
+    //     }
+    // ]
   },
   {
     timestamps: true,
   }
 );
 
-UserModel.pre("save", async function save(next) {
+EqubTypeModel.pre("save", async function save(next) {
   try {
     if (!this.isModified("password")) return next();
     const hash = await bcrypt.hash(this.password, Number(saltRound));
@@ -84,13 +75,13 @@ UserModel.pre("save", async function save(next) {
   }
 });
 
-UserModel.method({
+EqubTypeModel.method({
   transform() {
     const transformed = {};
     const fields = [
       "id",
       "fullName",
-      "username",
+      "equbTypename",
       "phoneNumber",
       "profilePicture",
       "password",
@@ -116,7 +107,7 @@ UserModel.method({
   },
 });
 
-UserModel.statics = {
+EqubTypeModel.statics = {
     async get(id) {
     if (!Types.ObjectId.isValid(id)) {
       throw new APIError({
@@ -125,41 +116,42 @@ UserModel.statics = {
           {
             field: "id",
             location: "params",
-            messages: "Please enter valid User ID",
+            messages: "Please enter valid EqubType ID",
           },
         ],
         status: NOT_FOUND,
       });
     }
-    const user = await this.findById(id).exec();
-    if (!user)
+    const equbType = await this.findById(id).exec();
+    if (!equbType)
       throw new APIError({
         message: NO_RECORD_FOUND,
         status: NOT_FOUND,
       });
-    return user;
+    return equbType;
   },
 
-    async ValidateUserAndGenerateToken(options) {
+    async ValidateEqubTypeAndGenerateToken(options) {
     const { phoneNumber, password } = options;
-    const user = await this.findOne({
+    const equbType = await this.findOne({
       phoneNumber,
     }).exec();
-    if (!user) {
+    if (!equbType) {
       throw new APIError({
         message: INVALID_CREDENTIALS,
         status: UNAUTHORIZED,
       });
     }
-    if (!(await user.matchPassword(password))) {
+    if (!(await equbType.matchPassword(password))) {
       throw new APIError({
         message: INVALID_CREDENTIALS,
         status: UNAUTHORIZED,
       });
+
     }
     return {
-      user: user.transform(),
-      accessToken: user.token(),
+      equbType: equbType.transform(),
+      accessToken: equbType.token(),
     };
   },
 
@@ -188,4 +180,4 @@ UserModel.statics = {
   },
 };
 
-module.exports = model("users", UserModel);
+module.exports = model("equbTypes", EqubTypeModel);

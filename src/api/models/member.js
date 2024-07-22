@@ -21,7 +21,7 @@ const {
   jwtSecret,
 } = require("../../config/env-vars");
 
-const UserModel = new Schema(
+const MemberModel = new Schema(
   {
     fullName: {
       type: String,
@@ -47,33 +47,25 @@ const UserModel = new Schema(
     role: {
       type: String,
       enum: ROLES,
-      default: "user",
+      default: "member",
     },
     password: {
       type: String,
       required: true,
       minlength: 6,
     },
-    equbName: {
-      type: String,
-      required: true,
-      minlength: 6
-    },
-    isActive: {
-      type: Boolean,
-      default: true
-    },
-    // total members
-    // representative repName
-    // cycle
-    // round
+    // equbId: {
+    //   type: String,
+    //   required: true,
+    //   minlength: 6
+    // }
   },
   {
     timestamps: true,
   }
 );
 
-UserModel.pre("save", async function save(next) {
+MemberModel.pre("save", async function save(next) {
   try {
     if (!this.isModified("password")) return next();
     const hash = await bcrypt.hash(this.password, Number(saltRound));
@@ -84,13 +76,13 @@ UserModel.pre("save", async function save(next) {
   }
 });
 
-UserModel.method({
+MemberModel.method({
   transform() {
     const transformed = {};
     const fields = [
       "id",
       "fullName",
-      "username",
+      "membername",
       "phoneNumber",
       "profilePicture",
       "password",
@@ -116,7 +108,7 @@ UserModel.method({
   },
 });
 
-UserModel.statics = {
+MemberModel.statics = {
     async get(id) {
     if (!Types.ObjectId.isValid(id)) {
       throw new APIError({
@@ -125,41 +117,41 @@ UserModel.statics = {
           {
             field: "id",
             location: "params",
-            messages: "Please enter valid User ID",
+            messages: "Please enter valid Member ID",
           },
         ],
         status: NOT_FOUND,
       });
     }
-    const user = await this.findById(id).exec();
-    if (!user)
+    const member = await this.findById(id).exec();
+    if (!member)
       throw new APIError({
         message: NO_RECORD_FOUND,
         status: NOT_FOUND,
       });
-    return user;
+    return member;
   },
 
-    async ValidateUserAndGenerateToken(options) {
+    async ValidateMemberAndGenerateToken(options) {
     const { phoneNumber, password } = options;
-    const user = await this.findOne({
+    const member = await this.findOne({
       phoneNumber,
     }).exec();
-    if (!user) {
+    if (!member) {
       throw new APIError({
         message: INVALID_CREDENTIALS,
         status: UNAUTHORIZED,
       });
     }
-    if (!(await user.matchPassword(password))) {
+    if (!(await member.matchPassword(password))) {
       throw new APIError({
         message: INVALID_CREDENTIALS,
         status: UNAUTHORIZED,
       });
     }
     return {
-      user: user.transform(),
-      accessToken: user.token(),
+      member: member.transform(),
+      accessToken: member.token(),
     };
   },
 
@@ -188,4 +180,4 @@ UserModel.statics = {
   },
 };
 
-module.exports = model("users", UserModel);
+module.exports = model("members", MemberModel);

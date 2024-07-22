@@ -5,7 +5,7 @@ const { env } = require('../config/env-vars');
 
 const Handler = (err, req, res, next) => {
   let _message = ""
-  if (err.stack.indexOf("MongoServer") !== -1) {
+  if (err.stack && err.stack.indexOf("MongoServer") !== -1) {
     const _err = err.message.split(" ");
     const type = _err[_err.indexOf("index:")+1]
     const coll = _err.slice(1, _err.indexOf("collection:")-1).join(' ')
@@ -13,7 +13,7 @@ const Handler = (err, req, res, next) => {
   }
   const response = {
     code: err.status || 500,
-    message: _message,
+    message: _message || err.message || err.name,
     errors: err.errors,
     stack: err.stack,
   };
