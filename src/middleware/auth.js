@@ -11,7 +11,9 @@ const {
 const APIError = require("../utils/APIError");
 
 const RefreshToken = require("../api/models/refresh-token");
-const { jwtExpirationInterval } = require("../config/env-vars");
+const {
+  jwtExpirationInterval
+} = require("../config/env-vars");
 
 const getPayload = async (req) => {
   const authHeader = req.headers.authorization;
@@ -20,7 +22,11 @@ const getPayload = async (req) => {
   }
 
   const token = authHeader.split(" ")[1];
-  return jwt.verify(token, process.env.JWT_SECRET);
+  try {
+    return jwt.verify(token, process.env.JWT_SECRET);
+  } catch (err) {
+    return err
+  }
 };
 const handleJWT = (req, res, next, roles) => async (err, user, info) => {
   //   try {
@@ -51,18 +57,20 @@ const handleJWT = (req, res, next, roles) => async (err, user, info) => {
 exports.Authorize =
   (roles = ROLES) =>
   (req, res, next) =>
-    passport.authenticate(
-      "jwt",
-      { session: false },
-      handleJWT(req, res, next, roles)
-    )(req, res, next);
+  passport.authenticate(
+    "jwt", {
+      session: false
+    },
+    handleJWT(req, res, next, roles)
+  )(req, res, next);
 
 exports.OptionalAuthorize = () => (req, res, next) => {
   const auth = req.header("Authorization");
   if (auth) {
     passport.authenticate(
-      "jwt",
-      { session: false },
+      "jwt", {
+        session: false
+      },
       handleJWT(req, res, next, LOGGED_IN)
     )(req, res, next);
   } else {

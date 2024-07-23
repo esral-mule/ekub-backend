@@ -11,4 +11,15 @@ app.use('/auth', require('./auth'));
 app.use('/admins', require('./admin'));
 app.use('/users', require('./user'));
 
+app.use('/equb-type', require('./equb-type'));
+app.use('/equb-level', require('./equb-level'));
+
+app.use('/uniqueid', require('./uniqueId'));
+app.use('/member', require('./member'));
+app.use('/membership', require('./membership'));
+
+app.use('/beneficiary', require('./beneficiary'));
+
+
+
 module.exports = app;
