@@ -19,7 +19,7 @@ app.use('/member', require('./member'));
 app.use('/membership', require('./membership'));
 
 app.use('/beneficiary', require('./beneficiary'));
-
-
+app.use('/round', require('./round'));
+app.use('/contribution', require('./contribution'));
 
 module.exports = app;

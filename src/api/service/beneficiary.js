@@ -3,11 +3,10 @@ const UniqueIdsService = require("./uniqueId");
 
 async function getMetaInfo(id, history = 1) {
     const previousUniqueId = await UniqueIdsService.GetOne(id);
-    const totalDraws = await Model.find().countDocuments() + history;
-    const cycle = Math.floor(totalDraws / previousUniqueId.equbType.maxUniqueIds)
+    const round = await Model.find().countDocuments() + history;
+    const cycle = Math.floor(round / previousUniqueId.equbType.maxUniqueIds)
     const pot = previousUniqueId.equbType.maxUniqueIds * previousUniqueId.equbType.contribution
     return {
-        totalDraws,
         cycle,
         pot
     }
@@ -49,9 +48,10 @@ exports.Create = async (data) => {
 
         const metaInfo = await getMetaInfo(data.uniqueId);
 
+
         const response = await Model.create({
             ...data,
-            ...metaInfo
+            ...metaInfo,
         });
 
         const req = {
@@ -69,11 +69,6 @@ exports.Create = async (data) => {
         await UniqueIdsService.Update(req);
 
         const wins = await calculateWins(data.uniqueId);
-
-        console.info({
-            metaInfo,
-            wins
-        })
 
         return {
             response,

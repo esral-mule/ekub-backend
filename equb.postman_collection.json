@@ -26,7 +26,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"fullName\": \"User 1\",\n    \"username\": \"username\",\n    \"phoneNumber\": \"0987654321\",\n    \"password\": \"password\",\n    \"equbName\": \"Brothers\"\n}",
+							"raw": "{\n    \"fullName\": \"User 1\",\n    \"username\": \"username_1\",\n    \"phoneNumber\": \"0987654320\",\n    \"password\": \"password\",\n    \"equbName\": \"Brothers\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -359,6 +359,1824 @@
 							"path": [
 								"users",
 								"6494b321a39fd4682b521fac"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "EqubType",
+			"item": [
+				{
+					"name": "create",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"Mekelle Equb\",\n    \"equb_id\": \"b\",\n    \"period\": \"weekly\",\n    \"contributionDay\": 1,\n    \"lotteryDay\": 7,\n    \"contribution\": 10000,\n    \"maxUniqueIds\": 20,\n    \"round\": 1,\n    \"cycle\": 3\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/equb-type",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"equb-type"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "updateWhole",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"Ahwat Equb PLC\",\n    \"equb_id\": \"a\",\n    \"period\": \"weekly\",\n    \"contributionDay\": 7,\n    \"lotteryDay\": 7,\n    \"contribution\": 15000,\n    \"maxUniqueIds\": 20,\n    \"round\": 1,\n    \"cycle\": 3\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/equb-type/669df457532c16063d9af3ea",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"equb-type",
+								"669df457532c16063d9af3ea"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getOne",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/equb-type/669df5548cd9838342504491",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"equb-type",
+								"669df5548cd9838342504491"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getAll",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/equb-type",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"equb-type"
+							],
+							"query": [
+								{
+									"key": "limit",
+									"value": "0",
+									"disabled": true
+								},
+								{
+									"key": "searchQuery",
+									"value": "week",
+									"disabled": true
+								},
+								{
+									"key": "formFormat",
+									"value": "669783679a19c563de831ca0",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/equb-type/669df5548cd9838342504491",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"equb-type",
+								"669df5548cd9838342504491"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Member",
+			"item": [
+				{
+					"name": "create",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"fullName\": \"John Doe\",\n  \"phoneNumber\": \"+1234567890\",\n  \"username\": \"johndoe123\",\n  \"profilePicture\": \"https://example.com/default.jpg\",\n  \"role\": \"member\",\n  \"password\": \"password123\"\n}\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/member",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"member"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "updateWhole",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"fullName\": \"John Doe\",\n  \"phoneNumber\": \"+1234567890\",\n  \"username\": \"johndoe123\",\n  \"profilePicture\": \"https://example.com/default.jpg\",\n  \"role\": \"member\",\n  \"password\": \"password123\"\n}\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/member/669e3b64bd667e24fbc771f5",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"member",
+								"669e3b64bd667e24fbc771f5"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getOne",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/member/669e3b64bd667e24fbc771f5",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"member",
+								"669e3b64bd667e24fbc771f5"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getAll",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/member?searchQuery=12&queryName=username",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"member"
+							],
+							"query": [
+								{
+									"key": "limit",
+									"value": "0",
+									"disabled": true
+								},
+								{
+									"key": "searchQuery",
+									"value": "12"
+								},
+								{
+									"key": "formFormat",
+									"value": "669783679a19c563de831ca0",
+									"disabled": true
+								},
+								{
+									"key": "queryName",
+									"value": "username"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/member/669e3b64bd667e24fbc771f5",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"member",
+								"669e3b64bd667e24fbc771f5"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "EqubLevel",
+			"item": [
+				{
+					"name": "create",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"equbType\": \"669f77af1c724fd6ede1f9c0\",\n  \"title\": \"Golden\",\n  \"contribution\": 10000\n}\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/equb-level",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"equb-level"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "updateWhole",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"equbType\": \"669df457532c16063d9af3ea\",\n  \"title\": \"Golden Level\",\n  \"contribution\": 10000\n}\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/equb-level/669e42f32b58cb453a4e0782",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"equb-level",
+								"669e42f32b58cb453a4e0782"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getOne",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/equb-level/669e42f32b58cb453a4e0782",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"equb-level",
+								"669e42f32b58cb453a4e0782"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getAll",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/equb-level",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"equb-level"
+							],
+							"query": [
+								{
+									"key": "limit",
+									"value": "0",
+									"disabled": true
+								},
+								{
+									"key": "formFormat",
+									"value": "669783679a19c563de831ca0",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/equb-level/669e3b64bd667e24fbc771f5",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"equb-level",
+								"669e3b64bd667e24fbc771f5"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Membership",
+			"item": [
+				{
+					"name": "create",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"member\": \"669e5461cb4e1347b5eaf8f9\",\n  \"equbType\": \"669e89d3b126f54d917005c8\",\n  \"equbLevel\": \"669e89f2b126f54d917005e3\",\n  \"uniqueId\": \"669e89d3b126f54d917005ca\"\n}\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/membership",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"membership"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "updateWhole",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"member\": \"669e3c6832c61cc9c40d71ea\",\n  \"equbType\": \"669df457532c16063d9af3ea\",\n  \"equbLevel\": \"669e42f32b58cb453a4e0782\",\n  \"isActive\": false\n}\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/membership/669e452bb62233e32084b6eb",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"membership",
+								"669e452bb62233e32084b6eb"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getOne",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/membership/669e452bb62233e32084b6eb",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"membership",
+								"669e452bb62233e32084b6eb"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getAll",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/membership",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"membership"
+							],
+							"query": [
+								{
+									"key": "limit",
+									"value": "0",
+									"disabled": true
+								},
+								{
+									"key": "formFormat",
+									"value": "669783679a19c563de831ca0",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/membership/669e3b64bd667e24fbc771f5",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"membership",
+								"669e3b64bd667e24fbc771f5"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "UniqueIds",
+			"item": [
+				{
+					"name": "create",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"member\": \"669e8a1fb126f54d917005e6\",\n  \"equbType\": \"669e89d3b126f54d917005c8\",\n  \"equbLevel\": \"669e89f2b126f54d917005e3\"\n}\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/uniqueid",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"uniqueid"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "updateWhole",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"members\": [\n        \"669e8a1fb126f54d917005e6\"\n    ],\n    \"equbType\": \"669e89d3b126f54d917005c8\",\n    \"uniqueId\": 1,\n    \"isFull\": false,\n    \"isWinner\": false\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/uniqueid/669e89d3b126f54d917005ca",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"uniqueid",
+								"669e89d3b126f54d917005ca"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getOne",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/uniqueid/669f77af1c724fd6ede1f9c2",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"uniqueid",
+								"669f77af1c724fd6ede1f9c2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getAll",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/uniqueid",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"uniqueid"
+							],
+							"query": [
+								{
+									"key": "limit",
+									"value": "0",
+									"disabled": true
+								},
+								{
+									"key": "formFormat",
+									"value": "669783679a19c563de831ca0",
+									"disabled": true
+								},
+								{
+									"key": "queryName",
+									"value": "uniqueId",
+									"disabled": true
+								},
+								{
+									"key": "uniqueId",
+									"value": "1",
+									"disabled": true
+								},
+								{
+									"key": "isFull",
+									"value": "false",
+									"disabled": true
+								},
+								{
+									"key": "isWinner",
+									"value": "true",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/uniqueids/669e3b64bd667e24fbc771f5",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"uniqueids",
+								"669e3b64bd667e24fbc771f5"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Round",
+			"item": [
+				{
+					"name": "start",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"equbType\": \"669e89d3b126f54d917005c8\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/round/start",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"round",
+								"start"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "updateWhole",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/round/id",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"round",
+								"id"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getOne",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/round/669fb11c739a7e89f4e399ff",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"round",
+								"669fb11c739a7e89f4e399ff"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getAll",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/round",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"round"
+							],
+							"query": [
+								{
+									"key": "limit",
+									"value": "0",
+									"disabled": true
+								},
+								{
+									"key": "formFormat",
+									"value": "669783679a19c563de831ca0",
+									"disabled": true
+								},
+								{
+									"key": "queryName",
+									"value": "uniqueId",
+									"disabled": true
+								},
+								{
+									"key": "uniqueId",
+									"value": "1",
+									"disabled": true
+								},
+								{
+									"key": "isFull",
+									"value": "false",
+									"disabled": true
+								},
+								{
+									"key": "isWinner",
+									"value": "false",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/round/669e3b64bd667e24fbc771f5",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"round",
+								"669e3b64bd667e24fbc771f5"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Contribution",
+			"item": [
+				{
+					"name": "create",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": ""
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "updateWhole",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n   \"isPaid\": true\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/contribution/669fb11c739a7e89f4e39a02",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"contribution",
+								"669fb11c739a7e89f4e39a02"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getOne",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/contribution/669fb11c739a7e89f4e39a02",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"contribution",
+								"669fb11c739a7e89f4e39a02"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getAll",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/contribution",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"contribution"
+							],
+							"query": [
+								{
+									"key": "limit",
+									"value": "0",
+									"disabled": true
+								},
+								{
+									"key": "formFormat",
+									"value": "669783679a19c563de831ca0",
+									"disabled": true
+								},
+								{
+									"key": "queryName",
+									"value": "uniqueId",
+									"disabled": true
+								},
+								{
+									"key": "uniqueId",
+									"value": "1",
+									"disabled": true
+								},
+								{
+									"key": "isFull",
+									"value": "false",
+									"disabled": true
+								},
+								{
+									"key": "isWinner",
+									"value": "false",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"title\": \"New Title\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/contribution/669fb11c739a7e89f4e39a02",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"contribution",
+								"669fb11c739a7e89f4e39a02"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Beneficiary",
+			"item": [
+				{
+					"name": "create",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"uniqueId\": \"669e89d3b126f54d917005ca\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/beneficiary",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"beneficiary"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "updateWhole",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/beneficiary/669e89d3b126f54d917005ca",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"beneficiary",
+								"669e89d3b126f54d917005ca"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getOne",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/beneficiary/669f51a43e2eaea883e7728c",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"beneficiary",
+								"669f51a43e2eaea883e7728c"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getWins",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/beneficiary/wins/669e89d3b126f54d917005cb",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"beneficiary",
+								"wins",
+								"669e89d3b126f54d917005cb"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getAll",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/beneficiary",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"beneficiary"
+							],
+							"query": [
+								{
+									"key": "limit",
+									"value": "0",
+									"disabled": true
+								},
+								{
+									"key": "formFormat",
+									"value": "669783679a19c563de831ca0",
+									"disabled": true
+								},
+								{
+									"key": "queryName",
+									"value": "uniqueId",
+									"disabled": true
+								},
+								{
+									"key": "uniqueId",
+									"value": "1",
+									"disabled": true
+								},
+								{
+									"key": "isFull",
+									"value": "false",
+									"disabled": true
+								},
+								{
+									"key": "isWinner",
+									"value": "false",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/beneficiary/669e3b64bd667e24fbc771f5",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"beneficiary",
+								"669e3b64bd667e24fbc771f5"
 							]
 						}
 					},

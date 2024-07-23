@@ -11,21 +11,24 @@ const {
     VALIDATION_ERROR,
 } = require("../../utils/constants");
 
-const DrawModel = new Schema({
-    equbType: {
+const Contribution = new Schema({
+    round: {
         type: Schema.Types.ObjectId,
-        ref: "equbTypes",
-        required: true
+        ref: 'rounds'
     },
-    turn: {
-        type: Number
+    member: {
+        type: Schema.Types.ObjectId,
+        ref: 'memberShips',
     },
+    isPaid: {
+        type: Boolean,
+        default: false
+    }
 }, {
     timestamps: true,
 });
 
-
-DrawModel.statics = {
+Contribution.statics = {
     async get(id) {
         if (!Types.ObjectId.isValid(id)) {
             throw new APIError({
@@ -33,19 +36,20 @@ DrawModel.statics = {
                 errors: [{
                     field: "id",
                     location: "params",
-                    messages: "Please enter valid Draw ID",
+                    messages: "Please enter valid Contribution ID",
                 }, ],
                 status: NOT_FOUND,
             });
         }
-        const draw = await this.findById(id).exec();
-        if (!draw)
+        const contribution = await this.findById(id).exec();
+        if (!contribution)
             throw new APIError({
                 message: NO_RECORD_FOUND,
                 status: NOT_FOUND,
             });
-        return draw;
+        return contribution;
     },
 };
 
-module.exports = model("draws", DrawModel);
+
+module.exports = model("contributions", Contribution);
