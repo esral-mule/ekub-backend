@@ -18,12 +18,12 @@ const EqubTypeModel = new Schema({
     trim: true,
     minlength: 5,
   },
-  equb_id: {
-    type: String,
-    unique: true,
-    trim: true,
-    required: true,
-  },
+  // equb_id: {
+  //   type: String,
+  //   unique: true,
+  //   trim: true,
+  //   required: true,
+  // },
   period: {
     type: String,
     enum: ['daily', 'weekly', 'monthly', "custome"],

@@ -1,0 +1,400 @@
+{
+	"info": {
+		"_postman_id": "920aa503-f64f-4c5e-a80f-44e86435d6cc",
+		"name": "equb",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "User",
+			"item": [
+				{
+					"name": "register",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"fullName\": \"User 1\",\n    \"username\": \"username\",\n    \"phoneNumber\": \"0987654321\",\n    \"password\": \"password\",\n    \"equbName\": \"Brothers\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/auth/register-user",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"auth",
+								"register-user"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "login",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.environment.set('jwt',pm.response.json().data.tokens.accessToken)"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"phoneNumber\": \"0985011172\",\n    \"password\": \"p@55w0rd_420\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/auth/login",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"auth",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "user-login",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.environment.set('jwt',pm.response.json().data.tokens.accessToken)"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"phoneNumber\": \"0987654321\",\n    \"password\": \"password\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/users/login",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"users",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "UserInformation",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2ODcxNzIxNDEsImlhdCI6MTY4NzE2MzE0MSwic3ViIjoiNjQ4ZjMxMmJmNTU2MmM3OTEyYmJjOGZkIn0.ejjlSGoLK3ZNPpRew2PBzJ23qh7CFI9rNrFev-VaJz0",
+								"type": "default"
+							}
+						],
+						"url": {
+							"raw": "{{url}}/users/668e5c4aa9a77881d7d1a923",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"users",
+								"668e5c4aa9a77881d7d1a923"
+							],
+							"query": [
+								{
+									"key": "page",
+									"value": "1",
+									"disabled": true
+								},
+								{
+									"key": "perPage",
+									"value": "10",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete-user",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"type": "default",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2ODcxNzIxNDEsImlhdCI6MTY4NzE2MzE0MSwic3ViIjoiNjQ4ZjMxMmJmNTU2MmM3OTEyYmJjOGZkIn0.ejjlSGoLK3ZNPpRew2PBzJ23qh7CFI9rNrFev-VaJz0"
+							}
+						],
+						"url": {
+							"raw": "{{url}}/users/668e5c4aa9a77881d7d1a923",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"users",
+								"668e5c4aa9a77881d7d1a923"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Profile",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2ODcxNzIxNDEsImlhdCI6MTY4NzE2MzE0MSwic3ViIjoiNjQ4ZjMxMmJmNTU2MmM3OTEyYmJjOGZkIn0.ejjlSGoLK3ZNPpRew2PBzJ23qh7CFI9rNrFev-VaJz0",
+								"type": "default"
+							}
+						],
+						"url": {
+							"raw": "{{url}}/users/profile",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"users",
+								"profile"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "UpdateUser",
+					"request": {
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{TEMP_TOKEN}}",
+								"type": "default"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"fullName\": \"UpdatedFullName\",\n    \"phoneNumber\": \"0987654321\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/users/6493314188cd8a2e5511e0f6",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"users",
+								"6493314188cd8a2e5511e0f6"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "changeUsername",
+					"request": {
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{TEMP_TOKEN}}",
+								"type": "default"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"phoneNumber\": \"911\",\n    \"password\": \"password\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/users/update-phone-number/64cdffca9f43365cd99b04ec",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"users",
+								"update-phone-number",
+								"64cdffca9f43365cd99b04ec"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "changePhoneNumber",
+					"request": {
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{TEMP_TOKEN}}",
+								"type": "default"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"fullName\": \"UpdatedFullName\",\n    \"phoneNumber\": \"0987654321\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/users/6493314188cd8a2e5511e0f6",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"users",
+								"6493314188cd8a2e5511e0f6"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "changePassword",
+					"request": {
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{TEMP_TOKEN}}",
+								"type": "default"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"oldPassword\": \"1234567890\",\n    \"password\": \"123456789\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/users/change-password/6493314188cd8a2e5511e0f6",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"users",
+								"change-password",
+								"6493314188cd8a2e5511e0f6"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getUsers",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{TEMP_TOKEN}}",
+								"type": "default"
+							}
+						],
+						"url": {
+							"raw": "{{url}}/users/6494b321a39fd4682b521fac",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"users",
+								"6494b321a39fd4682b521fac"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"auth": {
+		"type": "bearer",
+		"bearer": [
+			{
+				"key": "token",
+				"value": "{{jwt}}",
+				"type": "string"
+			}
+		]
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	]
+}

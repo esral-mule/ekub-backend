@@ -12,10 +12,10 @@ const {
 } = require("../../utils/constants");
 
 const UniqueId = new Schema({
-    type: {
-        type: String,
-        enum: ['full', 'part'],
-    },
+    // type: {
+    //     type: String,
+    //     enum: ['full', 'part'],
+    // },
     members: [{
         type: Schema.Types.ObjectId,
         ref: "memberShips",
