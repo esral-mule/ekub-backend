@@ -1,5 +1,7 @@
 const Joi = require("joi");
-const { ROLES } = require("../../utils/constants");
+const {
+  ROLES
+} = require("../../utils/constants");
 
 module.exports = {
   // GET /v1/users
@@ -9,8 +11,11 @@ module.exports = {
       perPage: Joi.number().min(1).max(100),
       fullName: Joi.string(),
       phoneNumber: Joi.string(),
+      limit: Joi.number(),
       // role: Joi.string().valid(...ROLES),
-    }).options({ abortEarly: false }),
+    }).options({
+      abortEarly: false
+    }),
   },
 
   // POST /v1/users
@@ -22,7 +27,9 @@ module.exports = {
       password: Joi.string().required().min(6).max(128),
       equbName: Joi.string().required().min(6),
       // role: Joi.string().valid(...ROLES),
-    }).options({ abortEarly: false }),
+    }).options({
+      abortEarly: false
+    }),
   },
 
   // PATCH /v1/users/change-password/:userID
@@ -30,12 +37,16 @@ module.exports = {
     body: Joi.object({
       oldPassword: Joi.string().min(6).max(128),
       password: Joi.string().min(6).max(128),
-    }).options({ abortEarly: false }),
+    }).options({
+      abortEarly: false
+    }),
     params: Joi.object({
       userID: Joi.string()
         .regex(/^[a-fA-F0-9]{24}$/)
         .required(),
-    }).options({ abortEarly: false }),
+    }).options({
+      abortEarly: false
+    }),
   },
 
   // PATCH /v1/users/update-username/:userID
@@ -43,14 +54,18 @@ module.exports = {
     body: Joi.object({
       username: Joi.string().max(16).required(),
       password: Joi.string().min(6).max(128).required(),
-    }).options({ abortEarly: false }),
+    }).options({
+      abortEarly: false
+    }),
   },
 
   updatePhoneNumber: {
     body: Joi.object({
       phoneNumber: Joi.string().max(16).required(),
       password: Joi.string().min(6).max(128).required(),
-    }).options({ abortEarly: false }),
+    }).options({
+      abortEarly: false
+    }),
   },
 
   // PATCH /v1/users/:userID
@@ -59,12 +74,16 @@ module.exports = {
       // phoneNumber: Joi.string().min(10).max(13), // phoneNumber shouldn't be changed
       fullName: Joi.string().max(128),
       equbName: Joi.string().required().min(6),
-    }).options({ abortEarly: false }),
+    }).options({
+      abortEarly: false
+    }),
     params: Joi.object({
       userID: Joi.string()
         .regex(/^[a-fA-F0-9]{24}$/)
         .required(),
-    }).options({ abortEarly: false }),
+    }).options({
+      abortEarly: false
+    }),
   },
 
   // post /v1/users/:userID/upload
@@ -73,6 +92,8 @@ module.exports = {
       userID: Joi.string()
         .regex(/^[a-fA-F0-9]{24}$/)
         .required(),
-    }).options({ abortEarly: false }),
+    }).options({
+      abortEarly: false
+    }),
   },
 };

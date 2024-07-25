@@ -41,8 +41,8 @@ exports.GetAll = async (req) => {
 
         const response = await Model
             .find(filter)
-            .sort(sort)
-            .skip(skip)
+            .skip(skip || 0)
+            .limit(limit || 10)
             .limit(limit)
 
         return response;

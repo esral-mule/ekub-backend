@@ -62,8 +62,8 @@ exports.GetAll = async (req) => {
         const response = await Model
             .find(filter)
             .sort(sort)
-            .skip(skip)
-            .limit(limit)
+            .skip(skip || 0)
+            .limit(limit || 10)
             .populate([{
                     path: 'round',
                     populate: {

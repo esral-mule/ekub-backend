@@ -40,7 +40,8 @@ exports.GetAll = async (req) => {
       };
     }
 
-    const response = await User.find(filter).sort(sort).skip(skip).limit(limit);
+    const response = await User.find(filter).sort(sort).skip(skip||0).limit(limit||10);
+    // const response = await User.find()
 
     return response;
   } catch (err) {

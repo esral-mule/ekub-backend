@@ -47,8 +47,8 @@ exports.GetAll = async (req) => {
         const response = await EqubType
             .find(filter)
             .sort(sort)
-            .skip(skip)
-            .limit(limit)
+            .skip(skip || 0)
+            .limit(limit || 10)
 
         return response;
     } catch (err) {

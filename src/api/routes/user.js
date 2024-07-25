@@ -22,7 +22,7 @@ app.param("userID", controller.load);
 
 app.route("/login").post(validate(Login), userController.login);
 
-app.route("/").get(Authorize([ADMIN]), validate(listUsers), controller.getAll);
+app.route("/").get(Authorize([ADMIN]), controller.getAll);
 
 app
   .route("/main")
