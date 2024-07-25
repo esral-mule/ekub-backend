@@ -18,12 +18,11 @@ const {
   updatePhoneNumber,
 } = require("../validations/user");
 
-app.param(
-  "userID",
-  controller.load,
-);
+app.param("userID", controller.load);
 
 app.route("/login").post(validate(Login), userController.login);
+
+app.route("/").get(Authorize([ADMIN]), validate(listUsers), controller.getAll);
 
 app
   .route("/main")
@@ -40,19 +39,27 @@ app
 
 app
   .route("/change-password/:userID")
-  .patch(Authorize([USER]), validate(changePassword), controller.changePassword);
+  .patch(
+    Authorize([USER]),
+    validate(changePassword),
+    controller.changePassword,
+  );
 
 app
   .route("/update-phone-number/:userID")
   .patch(
     Authorize([USER]),
     validate(updatePhoneNumber),
-    controller.updatePhoneNumber
+    controller.updatePhoneNumber,
   );
 
 app
   .route("/update-username/:userID")
-  .patch(Authorize([USER]), validate(updateUsername), controller.updateUsername);
+  .patch(
+    Authorize([USER]),
+    validate(updateUsername),
+    controller.updateUsername,
+  );
 
 app
   .route("/:userID/upload")

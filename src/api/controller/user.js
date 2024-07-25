@@ -1,5 +1,6 @@
 const {
   Get,
+  GetAll,
   CreateUser,
   UpdateUser,
   RemoveUser,
@@ -25,15 +26,26 @@ exports.load = async (req, res, next, id) => {
   }
 };
 
+exports.getAll = async (req, res, next) => {
+  try {
+    const response = await GetAll(req);
+    return res.status(OK).json({
+      data: response,
+      success: "SUCCESS",
+    });
+  } catch (err) {
+    return next(err);
+  }
+};
+
 exports.login = async (req, res, next) => {
   try {
     const data = await Login(req.body);
-    res.status(OK).json({ data, success: 'SUCCESS' });
+    res.status(OK).json({ data, success: "SUCCESS" });
   } catch (err) {
     next(err);
   }
 };
-
 
 exports.get = (req, res) =>
   res.json({ data: req.locals.user.transform(), success: "SUCCESS" });
@@ -70,7 +82,7 @@ exports.changePassword = async (req, res, next) => {
     const response = await ChangePassword(
       req.user,
       req.body.oldPassword,
-      req.body.password
+      req.body.password,
     );
     return res.json({ data: response, success: "SUCCESS" });
   } catch (error) {

@@ -6,10 +6,9 @@ const User = require("../models/user");
 const { generateTokenResponse } = require("../../middleware/auth");
 
 exports.Login = async (userData) => {
-  console.log(userData)
-  const { user, accessToken } = await User.ValidateUserAndGenerateToken(
-    userData
-  );
+  console.log(userData);
+  const { user, accessToken } =
+    await User.ValidateUserAndGenerateToken(userData);
   const tokens = generateTokenResponse(user, accessToken);
   return { tokens, user };
 };
@@ -27,6 +26,27 @@ exports.CreateUser = async (userData) => {
 };
 
 exports.Get = async (id) => User.get(id);
+
+exports.GetAll = async (req) => {
+  try {
+    const { limit, page, queryName, searchQuery, sort } = req.query;
+    const skip = (page - 1) * (limit || 10);
+    const filter = {};
+
+    if (queryName) {
+      filter[queryName] = {
+        $regex: searchQuery,
+        $options: "i",
+      };
+    }
+
+    const response = await User.find(filter).sort(sort).skip(skip).limit(limit);
+
+    return response;
+  } catch (err) {
+    return err;
+  }
+};
 
 exports.UpdateUser = async (user, newData) => {
   try {
