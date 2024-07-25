@@ -20,28 +20,28 @@ const {
 
 app.param("userID", controller.load);
 
-app.route("/login").post(validate(Login), userController.login);
+app.route("/login").post( userController.login);
 
 app.route("/").get(Authorize([ADMIN]), controller.getAll);
 
 app
   .route("/main")
-  .get(Authorize([ADMIN]), validate(listUsers), controller.load)
-  .post(Authorize([ADMIN]), validate(createUser), controller.create);
+  .get(Authorize([ADMIN]),  controller.load)
+  .post(Authorize([ADMIN]),  controller.create);
 
 app.route("/profile").get(Authorize(), controller.loggedIn);
 
 app
   .route("/:userID")
   .get(Authorize([ADMIN, USER]), controller.get)
-  .patch(Authorize([ADMIN, USER]), validate(updateUser), controller.update)
+  .patch(Authorize([ADMIN, USER]),  controller.update)
   .delete(Authorize([ADMIN]), controller.remove);
 
 app
   .route("/change-password/:userID")
   .patch(
     Authorize([USER]),
-    validate(changePassword),
+    
     controller.changePassword,
   );
 
@@ -49,7 +49,7 @@ app
   .route("/update-phone-number/:userID")
   .patch(
     Authorize([USER]),
-    validate(updatePhoneNumber),
+    
     controller.updatePhoneNumber,
   );
 
@@ -57,7 +57,7 @@ app
   .route("/update-username/:userID")
   .patch(
     Authorize([USER]),
-    validate(updateUsername),
+    
     controller.updateUsername,
   );
 
