@@ -42,7 +42,7 @@ exports.GetAll = async (req) => {
         const response = await Model
             .find(filter)
             .skip(skip || 0)
-            .limit(limit || 10)
+            .limit(limit || 1000)
             .limit(limit)
 
         return response;

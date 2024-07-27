@@ -48,7 +48,7 @@ exports.GetAll = async (req) => {
             .find(filter)
             .sort(sort)
             .skip(skip || 0)
-            .limit(limit || 10)
+            .limit(limit || 1000)
 
         return response;
     } catch (err) {

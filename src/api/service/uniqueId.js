@@ -97,14 +97,13 @@ exports.GetAll = async (req) => {
         if ((typeof Boolean(isFull)) === (typeof true)) filter.isFull = isFull === 'true'
         if ((typeof Boolean(isWinner)) === (typeof true)) filter.isWinner = isWinner === 'true'
 
-        console.log(filter)
         const response = await Model
             .find({
                 ...filter,
             })
             .sort(sort)
             .skip(skip || 0)
-            .limit(limit || 10)
+            .limit(limit || 1000)
             .populate([{
                     path: 'members',
                     populate: [{

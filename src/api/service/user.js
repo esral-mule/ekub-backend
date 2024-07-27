@@ -1,16 +1,28 @@
-const { omit } = require("lodash");
+const {
+  omit
+} = require("lodash");
 const bcrypt = require("bcryptjs");
-const { saltRound } = require("../../config/env-vars");
+const {
+  saltRound
+} = require("../../config/env-vars");
 const User = require("../models/user");
 
-const { generateTokenResponse } = require("../../middleware/auth");
+const {
+  generateTokenResponse
+} = require("../../middleware/auth");
 
 exports.Login = async (userData) => {
   console.log(userData);
-  const { user, accessToken } =
-    await User.ValidateUserAndGenerateToken(userData);
+  const {
+    user,
+    accessToken
+  } =
+  await User.ValidateUserAndGenerateToken(userData);
   const tokens = generateTokenResponse(user, accessToken);
-  return { tokens, user };
+  return {
+    tokens,
+    user
+  };
 };
 
 exports.LoginUser = (req, res) => res.json(req.user.transform());
@@ -25,11 +37,24 @@ exports.CreateUser = async (userData) => {
   }
 };
 
-exports.Get = async (id) => User.get(id);
+exports.Get = async (id) => {
+  try {
+    const res = await User.findById(id).select('isActive -password');
+    return res
+  } catch (err) {
+    return err
+  }
+}
 
 exports.GetAll = async (req) => {
   try {
-    const { limit, page, queryName, searchQuery, sort } = req.query;
+    const {
+      limit,
+      page,
+      queryName,
+      searchQuery,
+      sort
+    } = req.query;
     const skip = (page - 1) * (limit || 10);
     const filter = {};
 
@@ -40,7 +65,7 @@ exports.GetAll = async (req) => {
       };
     }
 
-    const response = await User.find(filter).sort(sort).skip(skip||0).limit(limit||10);
+    const response = await User.find(filter).sort(sort).skip(skip || 0).limit(limit || 1000).select('-password');
     // const response = await User.find()
 
     return response;
@@ -64,7 +89,10 @@ exports.UpdateUser = async (user, newData) => {
 exports.ChangePassword = async (user, oldPassword, password) => {
   try {
     const hashedPassword = await bcrypt.hash(password, Number(saltRound));
-    const updatedPassword = new User({ ...user, password: hashedPassword });
+    const updatedPassword = new User({
+      ...user,
+      password: hashedPassword
+    });
     const newUserObject = omit(updatedPassword.toObject(), "_id");
     await user.updateOne(newUserObject, {
       override: true,
@@ -79,12 +107,16 @@ exports.ChangePassword = async (user, oldPassword, password) => {
 };
 
 exports.RemoveUser = async (id) => {
-  const res = await User.deleteOne({ _id: id });
+  const res = await User.deleteOne({
+    _id: id
+  });
   console.log(res);
   return res;
 };
 
 exports.UploadFile = async (file) => {
-  const { path } = file;
+  const {
+    path
+  } = file;
   return path;
 };
