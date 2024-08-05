@@ -102,7 +102,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"phoneNumber\": \"0987654321\",\n    \"password\": \"password\"\n}",
+							"raw": "{\n    \"phoneNumber\": \"0987654320\",\n    \"password\": \"password\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -134,13 +134,14 @@
 							}
 						],
 						"url": {
-							"raw": "{{url}}/users/668e5c4aa9a77881d7d1a923",
+							"raw": "{{url}}/users/one/668e4e24c1c541c22655f5b8",
 							"host": [
 								"{{url}}"
 							],
 							"path": [
 								"users",
-								"668e5c4aa9a77881d7d1a923"
+								"one",
+								"668e4e24c1c541c22655f5b8"
 							],
 							"query": [
 								{
@@ -219,7 +220,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"fullName\": \"UpdatedFullName\",\n    \"phoneNumber\": \"0987654321\"\n}",
+							"raw": "{\n    \"isActive\": false\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -227,13 +228,13 @@
 							}
 						},
 						"url": {
-							"raw": "{{url}}/users/6493314188cd8a2e5511e0f6",
+							"raw": "{{url}}/users/668e5c93a9a77881d7d1a92c",
 							"host": [
 								"{{url}}"
 							],
 							"path": [
 								"users",
-								"6493314188cd8a2e5511e0f6"
+								"668e5c93a9a77881d7d1a92c"
 							]
 						}
 					},
@@ -352,13 +353,18 @@
 							}
 						],
 						"url": {
-							"raw": "{{url}}/users/6494b321a39fd4682b521fac",
+							"raw": "{{url}}/users?limit=33",
 							"host": [
 								"{{url}}"
 							],
 							"path": [
-								"users",
-								"6494b321a39fd4682b521fac"
+								"users"
+							],
+							"query": [
+								{
+									"key": "limit",
+									"value": "33"
+								}
 							]
 						}
 					},
@@ -387,7 +393,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"name\": \"Mekelle Equb\",\n    \"equb_id\": \"b\",\n    \"period\": \"weekly\",\n    \"contributionDay\": 1,\n    \"lotteryDay\": 7,\n    \"contribution\": 10000,\n    \"maxUniqueIds\": 20,\n    \"round\": 1,\n    \"cycle\": 3\n}",
+							"raw": "{\n    \"equbHouse\": \"66b0cc40af788d987537d7e4\",\n    \"name\": \"Mekelle Equb\",\n    \"equb_id\": \"b\",\n    \"period\": \"weekly\",\n    \"contributionDay\": 1,\n    \"lotteryDay\": 7,\n    \"contribution\": 10000,\n    \"maxUniqueIds\": 20,\n    \"round\": 1,\n    \"cycle\": 3\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -603,7 +609,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n  \"fullName\": \"John Doe\",\n  \"phoneNumber\": \"+1234567890\",\n  \"username\": \"johndoe123\",\n  \"profilePicture\": \"https://example.com/default.jpg\",\n  \"role\": \"member\",\n  \"password\": \"password123\"\n}\n",
+							"raw": "{\n  \"fullName\": \"John Doe\",\n  \"phoneNumber\": \"+1234567899\",\n  \"username\": \"johndoe124\",\n  \"profilePicture\": \"https://example.com/default.jpg\",\n  \"role\": \"member\",\n  \"password\": \"password123\"\n}\n",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -822,7 +828,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n  \"equbType\": \"669f77af1c724fd6ede1f9c0\",\n  \"title\": \"Golden\",\n  \"contribution\": 10000\n}\n",
+							"raw": "{\n  \"equbType\": \"66b0cc5caf788d987537d7eb\",\n  \"title\": \"Golden\",\n  \"contribution\": 20000\n}\n",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -949,12 +955,14 @@
 							}
 						},
 						"url": {
-							"raw": "{{url}}/equb-level",
+							"raw": "{{url}}/equb-level/etype/66b0cc5caf788d987537d7eb",
 							"host": [
 								"{{url}}"
 							],
 							"path": [
-								"equb-level"
+								"equb-level",
+								"etype",
+								"66b0cc5caf788d987537d7eb"
 							],
 							"query": [
 								{
@@ -1033,7 +1041,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n  \"member\": \"669e5461cb4e1347b5eaf8f9\",\n  \"equbType\": \"669e89d3b126f54d917005c8\",\n  \"equbLevel\": \"669e89f2b126f54d917005e3\",\n  \"uniqueId\": \"669e89d3b126f54d917005ca\"\n}\n",
+							"raw": "{\n  \"member\": \"66b0cc7baf788d987537d803\",\n  \"equbType\": \"66b0cc5caf788d987537d7eb\",\n  \"equbLevel\": \"66b0cc93af788d987537d806\",\n  \"uniqueId\": \"66b0cc5caf788d987537d7ed\"\n}\n",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -1160,12 +1168,14 @@
 							}
 						},
 						"url": {
-							"raw": "{{url}}/membership",
+							"raw": "{{url}}/membership/etype/66b0cc5caf788d987537d7eb",
 							"host": [
 								"{{url}}"
 							],
 							"path": [
-								"membership"
+								"membership",
+								"etype",
+								"66b0cc5caf788d987537d7eb"
 							],
 							"query": [
 								{
@@ -1371,12 +1381,14 @@
 							}
 						},
 						"url": {
-							"raw": "{{url}}/uniqueid",
+							"raw": "{{url}}/uniqueid/etype/66b0cc5caf788d987537d7eb",
 							"host": [
 								"{{url}}"
 							],
 							"path": [
-								"uniqueid"
+								"uniqueid",
+								"etype",
+								"66b0cc5caf788d987537d7eb"
 							],
 							"query": [
 								{
@@ -1475,7 +1487,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n  \"equbType\": \"669e89d3b126f54d917005c8\"\n}",
+							"raw": "{\n  \"equbType\": \"66b0cc5caf788d987537d7eb\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -1603,12 +1615,14 @@
 							}
 						},
 						"url": {
-							"raw": "{{url}}/round",
+							"raw": "{{url}}/round/etype/66b0cc5caf788d987537d7eb",
 							"host": [
 								"{{url}}"
 							],
 							"path": [
-								"round"
+								"round",
+								"etype",
+								"66b0cc5caf788d987537d7eb"
 							],
 							"query": [
 								{
@@ -1828,12 +1842,14 @@
 							}
 						},
 						"url": {
-							"raw": "{{url}}/contribution",
+							"raw": "{{url}}/contribution/round/66b0cfe0b8ec1559cfd7b3a3",
 							"host": [
 								"{{url}}"
 							],
 							"path": [
-								"contribution"
+								"contribution",
+								"round",
+								"66b0cfe0b8ec1559cfd7b3a3"
 							],
 							"query": [
 								{

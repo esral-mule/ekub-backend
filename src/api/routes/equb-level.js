@@ -10,8 +10,11 @@ const {
 } = require("../../utils/constants");
 
 app.route("/")
-    .get(Authorize([ADMIN, USER]), controller.getAll)
+    // .get(Authorize([ADMIN, USER]), controller.getAll)
     .post(Authorize([ADMIN, USER]), controller.create)
+
+app.route("/etype/:id")
+    .get(Authorize([ADMIN, USER]), controller.getAll)
 
 app.route("/:id")
     .get(Authorize([ADMIN, USER]), controller.getOne)

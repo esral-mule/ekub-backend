@@ -9,7 +9,10 @@ const {
     USER
 } = require("../../utils/constants");
 
-app.route("/")
+// app.route("/")
+//     .get(Authorize([ADMIN, USER]), controller.getAll)
+
+app.route("/etype/:id")
     .get(Authorize([ADMIN, USER]), controller.getAll)
 
 app.route("/start")

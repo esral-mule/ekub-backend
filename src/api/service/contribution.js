@@ -50,7 +50,9 @@ exports.GetAll = async (req) => {
             sort
         } = req.query;
         const skip = (page - 1) * (limit || 10);
-        const filter = {}
+        const filter = {
+            round: req.params.id
+        }
 
         if (queryName) {
             filter[queryName] = {

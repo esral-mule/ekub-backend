@@ -89,9 +89,9 @@ exports.GetAll = async (req) => {
             sort
         } = req.query;
         const skip = (page - 1) * (limit || 10);
-        const filter = {}
-
-        console.log(isFull)
+        const filter = {
+            equbType: req.params.id
+        }
 
         if (uniqueId) filter.uniqueId = Number(uniqueId)
         if ((typeof Boolean(isFull)) === (typeof true)) filter.isFull = isFull === 'true'

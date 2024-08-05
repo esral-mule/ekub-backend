@@ -37,9 +37,14 @@ exports.CreateUser = async (userData) => {
   }
 };
 
-exports.Get = async (id) => {
+
+exports.Get = async (id) =>  User.get(id);
+
+
+exports.GetOne = async (id) => {
+  console.log(id)
   try {
-    const res = await User.findById(id).select('isActive -password');
+    const res = await User.findOne({ _id: id })
     return res
   } catch (err) {
     return err

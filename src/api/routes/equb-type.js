@@ -11,12 +11,12 @@ const {
 
 app.route("/")
     .get(Authorize([ADMIN, USER]), controller.getAll)
-    .post(Authorize([ADMIN]), controller.createEqubType)
+    .post(Authorize([ADMIN, USER]), controller.createEqubType)
 
 app.route("/:id")
     .get(Authorize([ADMIN, USER]), controller.getOne)
-    .put(Authorize([ADMIN]), controller.update)
-    .delete(Authorize([ADMIN]), controller.deleteOne)
+    .put(Authorize([ADMIN, USER]), controller.update)
+    .delete(Authorize([ADMIN, USER]), controller.deleteOne)
 
 
 module.exports = app;

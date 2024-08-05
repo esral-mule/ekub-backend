@@ -41,6 +41,8 @@ const handleJWT = (req, res, next, roles) => async (err, user, info) => {
 
   const payload = await getPayload(req);
 
+  req.user = payload.sub
+
   const apiError = new APIError({
     message: error ? error.message : "Unauthorized",
     status: UNAUTHORIZED,

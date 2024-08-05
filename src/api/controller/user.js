@@ -1,5 +1,6 @@
 const {
   Get,
+  GetOne,
   GetAll,
   CreateUser,
   UpdateUser,
@@ -29,6 +30,20 @@ exports.load = async (req, res, next, id) => {
 exports.getAll = async (req, res, next) => {
   try {
     const response = await GetAll(req);
+    return res.status(OK).json({
+      data: response,
+      success: "SUCCESS",
+    });
+  } catch (err) {
+    return next(err);
+  }
+};
+
+
+exports.getOne = async (req, res, next) => {
+  try {
+    const { id } = req.params
+    const response = await GetOne(id);
     return res.status(OK).json({
       data: response,
       success: "SUCCESS",

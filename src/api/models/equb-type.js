@@ -12,18 +12,17 @@ const {
 } = require("../../utils/constants");
 
 const EqubTypeModel = new Schema({
+  equbHouse: {
+    type: Schema.Types.ObjectId,
+    ref: "users",
+    required: true
+  },
   name: {
     type: String,
     required: true,
     trim: true,
     minlength: 5,
   },
-  // equb_id: {
-  //   type: String,
-  //   unique: true,
-  //   trim: true,
-  //   required: true,
-  // },
   period: {
     type: String,
     enum: ['daily', 'weekly', 'monthly', "custome"],
