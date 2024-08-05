@@ -123,7 +123,9 @@ exports.GetAll = async (req) => {
             sort
         } = req.query;
         const skip = (page - 1) * (limit || 1000);
-        const filter = {}
+        const filter = {
+            equbType: req.params.id
+        }
 
         if (queryName) {
             filter[queryName] = {
