@@ -14,7 +14,10 @@ const {
 
 exports.createEqubType = async (req, res, next) => {
     try {
-        const response = await CreateEqubType(req.body)
+        const response = await CreateEqubType({
+            ...req.body,
+            equbHouse: req.user
+        })
         return res.status(CREATED).json({
             data: response,
             success: "SUCCESS"
