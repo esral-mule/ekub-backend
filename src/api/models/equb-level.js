@@ -24,6 +24,10 @@ const EqubLevel = new Schema({
     contribution: {
         type: Number
     },
+    deleted: {
+        type: Boolean,
+        default: false
+    }
 }, {
     timestamps: true,
 });

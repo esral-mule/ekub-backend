@@ -1,5 +1,6 @@
 const {
     Create,
+    AddMemberToRound,
     GetOne,
     GetAll,
     Update,
@@ -15,6 +16,19 @@ const {
 exports.create = async (req, res, next) => {
     try {
         const response = await Create(req.body)
+        return res.status(CREATED).json({
+            data: response,
+            success: "SUCCESS"
+        })
+    } catch (err) {
+        return next(err)
+    }
+}
+
+
+exports.addMemberToRound = async (req, res, next) => {
+    try {
+        const response = await AddMemberToRound(req.body)
         return res.status(CREATED).json({
             data: response,
             success: "SUCCESS"

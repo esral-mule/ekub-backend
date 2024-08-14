@@ -23,6 +23,10 @@ const Contribution = new Schema({
     isPaid: {
         type: Boolean,
         default: false
+    },
+    deleted: {
+        type: Boolean,
+        default: false
     }
 }, {
     timestamps: true,

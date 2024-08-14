@@ -34,7 +34,8 @@ exports.GetAll = async (req) => {
         } = req.query;
         const skip = (page - 1) * (limit || 10);
         const filter = {
-            equbType: req.params.id
+            equbType: req.params.id,
+            deleted: false
         }
 
         if (queryName) {
@@ -80,9 +81,9 @@ exports.DeleteOne = async (req) => {
             id
         } = req.params
 
-        const response = await Model.deleteOne({
+        const response = await Model.updateOne({
             _id: id
-        })
+        }, { $set: { deleted: true }})
         return response;
     } catch (err) {
         return err

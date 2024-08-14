@@ -6,7 +6,7 @@ const MemberModel = require('../models/membership');
 
 exports.Create = async (data) => {
     try {
-        const rounds = await Model.find().countDocuments();
+        const rounds = await Model.find({ _id: data.equbType }).countDocuments();
         const equbType = await EqubTypeModel.findById({
             _id: data.equbType
         });
@@ -31,6 +31,26 @@ exports.Create = async (data) => {
 
         return response;
     } catch (err) {
+        return err
+    }
+}
+
+exports.AddMemberToRound = async (data) => {
+    try {
+        const activeRound = await Model.findOne({ closed: false })
+        if (activeRound._id) {
+            const res = await ContributionModel.create({
+                member: data.member,
+                round: activeRound._id
+            })
+
+            return res
+        }
+        return {
+            error: true,
+            message: "There is no active round"
+        }
+    } catch(err) {
         return err
     }
 }

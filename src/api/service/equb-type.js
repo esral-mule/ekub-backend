@@ -36,7 +36,8 @@ exports.GetAll = async (req) => {
         } = req.query;
         const skip = (page - 1) * (limit || 10);
         const filter = {
-            equbHouse: req.user
+            equbHouse: req.user,
+            deleted: false
         }
 
         if (queryName) {
@@ -81,9 +82,9 @@ exports.DeleteOne = async (req) => {
             id
         } = req.params
 
-        const response = await EqubType.deleteOne({
+        const response = await EqubType.updateOne({
             _id: id
-        })
+        }, { $set: { deleted: true }})
         return response;
     } catch (err) {
         return err

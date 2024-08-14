@@ -15,6 +15,9 @@ const {
 app.route("/etype/:id")
     .get(Authorize([ADMIN, USER]), controller.getAll)
 
+app.route("/add-to-round")
+    .post(Authorize([ADMIN, USER]), controller.addMemberToRound)
+
 app.route("/start")
     .post(Authorize([ADMIN, USER]), controller.create)
 

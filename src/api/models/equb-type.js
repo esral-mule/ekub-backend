@@ -49,6 +49,10 @@ const EqubTypeModel = new Schema({
   },
   cycle: {
     type: Number,
+  },
+  deleted: {
+    type: Boolean,
+    default: false
   }
 }, {
   timestamps: true,

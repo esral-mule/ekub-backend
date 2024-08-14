@@ -30,7 +30,9 @@ exports.GetAll = async (req) => {
             sort
         } = req.query;
         const skip = (page - 1) * (limit || 10);
-        const filter = {}
+        const filter = {
+            // deleted: false
+        }
 
         if (queryName) {
             filter[queryName] = {
@@ -74,9 +76,9 @@ exports.DeleteOne = async (req) => {
             id
         } = req.params
 
-        const response = await Model.deleteOne({
+        const response = await Model.updateOne({
             _id: id
-        })
+        }, { $set: { deleted: true }})
         return response;
     } catch (err) {
         return err

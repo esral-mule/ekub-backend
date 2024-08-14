@@ -50,6 +50,10 @@ const MemberModel = new Schema({
     type: String,
     minlength: 6,
   },
+  deleted: {
+    type: Boolean,
+    default: false
+  }
 }, {
   timestamps: true,
 });
