@@ -6,7 +6,8 @@ const MemberModel = require('../models/membership');
 
 exports.Create = async (data) => {
     try {
-        const rounds = await Model.find({ _id: data.equbType }).countDocuments();
+        const rounds = await Model.find({ equbType: data.equbType }).countDocuments();
+        console.log(rounds)
         const equbType = await EqubTypeModel.findById({
             _id: data.equbType
         });
@@ -19,7 +20,9 @@ exports.Create = async (data) => {
         });
 
         const members = await MemberModel.find({
-            isActive: true
+            isActive: true,
+            deleted:false,
+            equbType: data.equbType
         });
 
         const contributions = members.map(val => ({
