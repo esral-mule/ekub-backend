@@ -22,7 +22,8 @@ const EqubLevel = new Schema({
         required: true,
     },
     contribution: {
-        type: Number
+        type: Number,
+        required: true
     },
     deleted: {
         type: Boolean,
