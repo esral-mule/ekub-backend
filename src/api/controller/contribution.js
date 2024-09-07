@@ -3,7 +3,8 @@ const {
     GetOne,
     GetAll,
     Update,
-    DeleteOne
+    DeleteOne,
+    GetByEqubType
 } = require('../service/contribution');
 
 const {
@@ -27,6 +28,18 @@ exports.create = async (req, res, next) => {
 exports.getAll = async (req, res, next) => {
     try {
         const response = await GetAll(req)
+        return res.status(OK).json({
+            data: response,
+            success: "SUCCESS"
+        })
+    } catch (err) {
+        return next(err)
+    }
+}
+
+exports.getByEqubType = async (req, res, next) => {
+    try {
+        const response = await GetByEqubType(req)        
         return res.status(OK).json({
             data: response,
             success: "SUCCESS"

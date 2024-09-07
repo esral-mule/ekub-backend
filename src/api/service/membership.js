@@ -23,6 +23,31 @@ exports.GetOne = async (id) => {
     }
 }
 
+exports.CheckIsMember = async (req) => {
+    try {
+        const response = await Model.findOne({
+            member: req.user,
+            equbType: req.params.id
+            })
+            .populate("member equbType equbLevel uniqueId")
+        return response;
+    } catch (err) {
+        return err
+    }
+}
+
+exports.GetByMember = async (req) => {
+    try {
+        const response = await Model.find({
+            member: req.user
+            })
+            .populate("member equbType equbLevel uniqueId")
+        return response;
+    } catch (err) {
+        return err
+    }
+}
+
 exports.GetAll = async (req) => {
     try {
         const {

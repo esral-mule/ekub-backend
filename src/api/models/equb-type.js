@@ -31,7 +31,6 @@ const EqubTypeModel = new Schema({
   },
   contributionDay: {
     type: Number,
-    required: true,
   },
   lotteryDay: {
     type: Number,

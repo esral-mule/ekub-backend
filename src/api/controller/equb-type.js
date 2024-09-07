@@ -3,7 +3,8 @@ const {
     GetOne,
     GetAll,
     Update,
-    DeleteOne
+    DeleteOne,
+    GetForMember
 } = require('../service/equb-type');
 
 const {
@@ -49,6 +50,20 @@ exports.getOne = async (req, res, next) => {
     } catch (err) {
         return next(err)
     }
+}
+
+exports.getForMember = async (req, res, next) => {
+    try {
+        
+        const equbTypes = await GetForMember(req);
+
+        return res.status(OK).json({
+            data: equbTypes,
+            success: "SUCCESS",
+          });
+      } catch (error) {
+        return next(error);
+      }
 }
 
 exports.update = async (req, res, next) => {

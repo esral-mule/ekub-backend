@@ -6,7 +6,8 @@ const {
 } = require("../../middleware/auth");
 const {
     ADMIN,
-    USER
+    USER,
+    MEMBER
 } = require("../../utils/constants");
 
 app.route("/")
@@ -15,6 +16,8 @@ app.route("/")
 
 app.route("/round/:id")
     .get(Authorize([ADMIN, USER]), controller.getAll)
+
+app.route("/equbtype/:id").get(Authorize([MEMBER]),controller.getByEqubType)
 
 app.route("/:id")
     .get(Authorize([ADMIN, USER]), controller.getOne)

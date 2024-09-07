@@ -1,4 +1,5 @@
 const EqubType = require("../models/equb-type");
+const { CheckIsMember, GetByMember } = require("./membership");
 const UniqueIdsService = require("./uniqueId")
 
 exports.CreateEqubType = async (equbTypeData) => {
@@ -23,6 +24,14 @@ exports.GetOne = async (id) => {
         return err
     }
 }
+
+exports.GetForMember = async (req) => {
+    try {
+      return await GetByMember(req)
+    } catch (error) {
+      return error;
+    }
+  };
 
 exports.GetAll = async (req) => {
     try {
