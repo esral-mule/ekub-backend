@@ -147,3 +147,18 @@ exports.DeleteOne = async (req) => {
     return err;
   }
 };
+
+exports.DeleteFromActiveRound = async (activeRound,member) => {
+  try {
+    const response = await Model.updateOne(
+      {
+        round:activeRound,
+        member,
+      },
+      { $set: { deleted: true } }
+    );
+    return response;
+  } catch (err) {
+    return err;
+  }
+};

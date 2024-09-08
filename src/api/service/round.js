@@ -70,6 +70,19 @@ exports.GetOne = async (id) => {
     }
 }
 
+exports.GetActive = async (equbType) => {
+    try {
+        const response = await Model.findOne({
+            equbType,
+            closed: false
+            })
+        return response;
+
+    } catch (err) {
+        return err
+    }
+}
+
 exports.GetAll = async (req) => {
     try {
         const {

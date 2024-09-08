@@ -1,4 +1,6 @@
 const Model = require("../models/membership");
+const { DeleteFromActiveRound } = require("./contribution");
+const {GetActive} = require("./round")
 const UniqueIdsService = require("./uniqueId")
 
 exports.Create = async (data) => {
@@ -104,7 +106,14 @@ exports.DeleteOne = async (req) => {
     try {
         const {id} = req.params
         const membership  = await Model.findById({_id: id}).populate("uniqueId")
-        await UniqueIdsService.RemoveMember(membership.uniqueId._id,membership._id)                
+        
+        const res=  await UniqueIdsService.RemoveMember(membership.uniqueId._id,membership._id)        
+        console.log("res",res);
+        
+                const activeRound = await GetActive(membership.equbType)
+        if(activeRound){
+            await DeleteFromActiveRound(activeRound,membership._id)
+        }
         const response = await Model.updateOne({
             _id: id
         }, { $set: { deleted: true }})
