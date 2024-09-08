@@ -102,10 +102,9 @@ exports.Update = async (req) => {
 
 exports.DeleteOne = async (req) => {
     try {
-        const {
-            id
-        } = req.params
-
+        const {id} = req.params
+        const membership  = await Model.findById({_id: id}).populate("uniqueId")
+        await UniqueIdsService.RemoveMember(membership.uniqueId._id,membership._id)                
         const response = await Model.updateOne({
             _id: id
         }, { $set: { deleted: true }})

@@ -43,6 +43,31 @@ exports.AddMember = async (uniqueIdId, memeberId) => {
     }
 }
 
+exports.RemoveMember = async (uniqueIdId, membershipId) => {
+    try {
+      const previousUniqueId = await Model.findById({
+        _id: uniqueIdId,
+      });
+  
+      const membershipObjectId = new Types.ObjectId(membershipId);
+  
+      const newMembers = previousUniqueId.members.filter(
+        (member) => !member.equals(membershipObjectId)
+      );
+  
+      const response = await Model.updateOne(
+        { _id: uniqueIdId },
+        {
+          $set: {
+            members: newMembers,
+          },
+        }
+      );  
+      return response;
+    } catch (err) {
+      return err;
+    }
+  };
 
 exports.Create = async (data) => {
     try {
