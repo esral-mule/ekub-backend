@@ -154,6 +154,35 @@ exports.GetAll = async (req) => {
     }
 }
 
+exports.GetNotFull = async (req) => {
+    try {
+
+        const response = await Model
+            .find({
+                equbType: req.params.id,
+                isFull:false
+            })
+            .populate([{
+                    path: 'members',
+                    populate: [{
+                            path: 'member'
+                        },
+                        {
+                            path: 'equbLevel'
+                        }
+                    ]
+                },
+                {
+                    path: 'equbType'
+                }
+            ])
+
+        return response;
+    } catch (err) {
+        return err
+    }
+}
+
 exports.GetAvailable= async (equbType) => {
     try {
       // get the latest cycle from the active round in the equbType

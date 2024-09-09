@@ -17,6 +17,10 @@ app.route("/")
 app.route("/etype/:id")
     .get(Authorize([ADMIN, USER]), controller.getAll)
 
+// to get available(not full) unique ids for adding a new member
+app.route("/notfull/etype/:id")
+    .get(Authorize([ADMIN, USER]), controller.getNotFull)
+// to get available unique ids for lotory
 app.route("/available/etype/:id")
     .get(Authorize([ADMIN, USER]), controller.getAvailable)
     
