@@ -1,5 +1,4 @@
 const Model = require("../models/round");
-const BeneficiaryModel = require("../models/beneficiary")
 const EqubTypeModel = require('../models/equb-type')
 const ContributionModel = require('../models/contribution');
 const MemberModel = require('../models/membership');
@@ -7,11 +6,10 @@ const MemberModel = require('../models/membership');
 exports.Create = async (data) => {
     try {
         const rounds = await Model.find({ equbType: data.equbType }).countDocuments();
-        console.log(rounds)
         const equbType = await EqubTypeModel.findById({
             _id: data.equbType
         });
-        const cycle = Math.floor(rounds + 1 / equbType.maxUniqueIds)
+        const cycle = Math.floor(rounds/equbType.maxUniqueIds)+1        
 
         const response = await Model.create({
             ...data,

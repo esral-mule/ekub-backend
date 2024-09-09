@@ -2,6 +2,10 @@ const {
     Types
 } = require("mongoose");
 const Model = require("../models/uniqueId");
+const RoundModel = require("../models/round");
+const { GetActive } = require("./round");
+const BeneficiaryModel = require("../models/beneficiary")
+const UniqueIdModel = require("../models/uniqueId")
 
 exports.InsertMany = async (maxUniqueIds, id) => {
     try {
@@ -120,7 +124,7 @@ exports.GetAll = async (req) => {
 
         if (uniqueId) filter.uniqueId = Number(uniqueId)
         if ((typeof Boolean(isFull)) === (typeof true)) filter.isFull = isFull === 'true'
-        if ((typeof Boolean(isWinner)) === (typeof true)) filter.isWinner = isWinner === 'true'
+        if ((typeof Boolean(isWinner)) === (typeof true)) filter.isWinner = isWinner
 
         const response = await Model
             .find({
@@ -149,6 +153,32 @@ exports.GetAll = async (req) => {
         return err
     }
 }
+
+exports.GetAvailable= async (equbType) => {
+    try {
+      // get the latest cycle from the active round in the equbType
+      const activeRound = await GetActive(equbType)
+      if(!activeRound){
+        throw new Error("There is no active round");
+       }
+      const roundsInCycle = await RoundModel.find({cycle: activeRound.cycle,equbType,closed:true }).select('_id');
+      // Extract the round IDs for the given cycle
+      const roundIds = roundsInCycle.map(round => round._id);
+      // Find uniqueIds that are already associated with beneficiaries for any round in this cycle
+      const usedUniqueIds = await BeneficiaryModel.find({
+        round: { $in: roundIds }
+      }).distinct('uniqueId');
+      // Find uniqueIds that are not in the usedUniqueIds array
+      const availableUniqueIds = await UniqueIdModel.find({
+        equbType,
+        _id: { $nin: usedUniqueIds },
+      }).populate('equbType members');
+  
+      return availableUniqueIds;
+    } catch (error) {
+      throw new Error(error.message);
+    }
+  }
 
 exports.Update = async (req) => {
     try {

@@ -3,7 +3,8 @@ const {
     GetOne,
     GetAll,
     Update,
-    DeleteOne
+    DeleteOne,
+    GetAvailable
 } = require('../service/uniqueId');
 
 const {
@@ -35,7 +36,17 @@ exports.getAll = async (req, res, next) => {
         return next(err)
     }
 }
-
+exports.getAvailable = async (req, res, next) => {
+    try {
+        const response = await GetAvailable(req.params.id)
+        return res.status(OK).json({
+            data: response,
+            success: "SUCCESS"
+        })
+    } catch (err) {
+        return next(err)
+    }
+}
 exports.getOne = async (req, res, next) => {
     try {
         const response = await GetOne(req.params.id)

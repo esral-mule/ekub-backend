@@ -1,12 +1,14 @@
 const Model = require("../models/beneficiary");
+const { GetActive } = require("./round");
 const UniqueIdsService = require("./uniqueId");
 
-async function getMetaInfo(id, history = 1) {
+async function getMetaInfo(id) {
     const previousUniqueId = await UniqueIdsService.GetOne(id);
-    const round = await Model.find().countDocuments() + history;
-    const cycle = Math.floor(round / previousUniqueId.equbType.maxUniqueIds)
+    const activeRound = await GetActive(previousUniqueId.equbType)
+    const {cycle} = activeRound;    
     const pot = previousUniqueId.equbType.maxUniqueIds * previousUniqueId.equbType.contribution
     return {
+        round:activeRound,
         cycle,
         pot
     }
@@ -63,7 +65,6 @@ exports.Create = async (data) => {
                 equbType: previousUniqueId.equbType._id,
                 uniqueId: previousUniqueId.uniqueId,
                 isFull: previousUniqueId.isFull,
-                isWinner: true,
             },
         }
         await UniqueIdsService.Update(req);

@@ -17,6 +17,9 @@ app.route("/")
 app.route("/etype/:id")
     .get(Authorize([ADMIN, USER]), controller.getAll)
 
+app.route("/available/etype/:id")
+    .get(Authorize([ADMIN, USER]), controller.getAvailable)
+    
 app.route("/:id")
     .get(Authorize([ADMIN, USER]), controller.getOne)
     .put(Authorize([ADMIN, USER]), controller.update)

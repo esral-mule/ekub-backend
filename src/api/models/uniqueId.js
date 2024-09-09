@@ -33,10 +33,6 @@ const UniqueId = new Schema({
     isFull: {
         type: Boolean,
         default: false
-    },
-    isWinner: {
-        type: Boolean,
-        default: false
     }
 }, {
     timestamps: true,
