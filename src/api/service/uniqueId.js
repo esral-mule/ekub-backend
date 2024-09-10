@@ -24,7 +24,7 @@ exports.InsertMany = async (maxUniqueIds, id) => {
     }
 }
 
-exports.AddMember = async (uniqueIdId, memeberId) => {
+exports.AddMember = async (uniqueIdId, memeberId,isFull=false) => {
     try {
         const previousUniqueId = await Model.findById({
             _id: uniqueIdId,
@@ -37,6 +37,7 @@ exports.AddMember = async (uniqueIdId, memeberId) => {
         }, {
             $set: {
                 members: newMembers,
+                isFull
             }
         })
 

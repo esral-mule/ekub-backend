@@ -4,7 +4,8 @@ const {
     GetAll,
     GetWins,
     Update,
-    DeleteOne
+    DeleteOne,
+    GetByRound
 } = require('../service/beneficiary');
 
 const {
@@ -28,6 +29,18 @@ exports.create = async (req, res, next) => {
 exports.getAll = async (req, res, next) => {
     try {
         const response = await GetAll(req)
+        return res.status(OK).json({
+            data: response,
+            success: "SUCCESS"
+        })
+    } catch (err) {
+        return next(err)
+    }
+}
+
+exports.getByRound = async (req, res, next) => {
+    try {
+        const response = await GetByRound(req)
         return res.status(OK).json({
             data: response,
             success: "SUCCESS"

@@ -17,6 +17,9 @@ app.route("/")
 app.route("/etype/:id")
     .get(Authorize([ADMIN, USER]), controller.getAll)
 
+app.route("/round/:id")
+    .get(Authorize([ADMIN, USER]), controller.getByRound)
+
 app.route('/wins/:uniqueId')
     .get(Authorize([ADMIN, USER]), controller.getWins)
 

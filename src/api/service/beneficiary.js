@@ -114,6 +114,34 @@ exports.GetOne = async (id) => {
     }
 }
 
+exports.GetByRound = async (req) => {
+    try {
+        const {id} = req.params  
+        const response = await Model.findOne({
+            round:id
+        }).populate({
+            path: 'uniqueId',
+            populate: [{
+                path: 'members',
+                populate: [{
+                        path: 'equbLevel',
+                    },
+                    {
+                        path: 'equbType'
+                    },
+                    {
+                        path: 'member'
+                    }
+                ]
+            }]
+        })
+
+        return response;
+    } catch (err) {
+        return err
+    }
+}
+
 exports.GetAll = async (req) => {
     try {
         const {

@@ -38,21 +38,18 @@ const handleJWT = (req, res, next, roles) => async (err, user, info) => {
   //   }
   // };
   const error = err || info;
-
-  const payload = await getPayload(req);
-
-  req.user = payload.sub
-
   const apiError = new APIError({
     message: error ? error.message : "Unauthorized",
     status: UNAUTHORIZED,
     stack: error ? error.stack : undefined,
   });
 
-  if (!payload) return next(apiError);
+  const payload = await getPayload(req);
+  if (!payload || !payload.sub) return next(apiError);
 
   if (!roles.includes(payload.role)) return next(apiError);
-
+  
+  req.user = payload.sub
   return next();
 };
 

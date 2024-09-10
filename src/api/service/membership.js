@@ -6,7 +6,7 @@ const UniqueIdsService = require("./uniqueId")
 exports.Create = async (data) => {
     try {
         const response = await Model.create(data);
-        await UniqueIdsService.AddMember(data.uniqueId, response._id);
+        await UniqueIdsService.AddMember(data.uniqueId, response._id,data.isFull);
         return response;
     } catch (err) {
         return err
