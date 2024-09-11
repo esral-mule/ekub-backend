@@ -1,5 +1,5 @@
 const EqubType = require("../models/equb-type");
-const { CheckIsMember, GetByMember } = require("./membership");
+const { GetByMember } = require("./membership");
 const UniqueIdsService = require("./uniqueId")
 
 exports.CreateEqubType = async (equbTypeData) => {

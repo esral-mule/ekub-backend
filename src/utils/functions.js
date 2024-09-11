@@ -7,7 +7,7 @@ const validateAndCovertPhoneNumber = (req, res, next) => {
     phoneNumber= phoneNumber.replace("+251", "0");
   }
 
-  if (phoneNumber.length > 10) {
+  if (phoneNumber.length !== 10) {
     const err = new APIError({
       message: "invalid Phone Number",
       status: BAD_REQUEST,
