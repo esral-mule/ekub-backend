@@ -6,7 +6,6 @@ const validateAndCovertPhoneNumber = (req, res, next) => {
   if (phoneNumber.startsWith("+")) {
     phoneNumber= phoneNumber.replace("+251", "0");
   }
-  console.log("phoneNumber",phoneNumber);
   
   if (phoneNumber.length !== 10 || !(phoneNumber.startsWith("09"))) {
     const err = new APIError({
