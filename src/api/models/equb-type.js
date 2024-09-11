@@ -27,7 +27,6 @@ const EqubTypeModel = new Schema({
     type: String,
     enum: ['daily', 'weekly', 'monthly', "custome"],
     default: "weekly",
-    required: true,
   },
   contributionDay: {
     type: Number,

@@ -3,11 +3,12 @@ const { BAD_REQUEST } = require("./constants");
 
 const validateAndCovertPhoneNumber = (req, res, next) => {
   let { phoneNumber } = req.body;
-  if (phoneNumber.startsWith("+251")) {
+  if (phoneNumber.startsWith("+")) {
     phoneNumber= phoneNumber.replace("+251", "0");
   }
-
-  if (phoneNumber.length !== 10) {
+  console.log("phoneNumber",phoneNumber);
+  
+  if (phoneNumber.length !== 10 || !(phoneNumber.startsWith("09"))) {
     const err = new APIError({
       message: "invalid Phone Number",
       status: BAD_REQUEST,
