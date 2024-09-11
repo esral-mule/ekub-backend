@@ -1,3 +1,5 @@
+const APIError = require("../../utils/APIError");
+const { NOT_FOUND } = require("../../utils/constants");
 const Model = require("../models/contribution");
 const { CheckIsMember } = require("./membership");
 
@@ -95,7 +97,10 @@ exports.GetByEqubType = async (req) => {
   try {
     const membership = await CheckIsMember(req);
     if (!membership) {
-      throw new Error("No membership found for this equb type");
+      throw new APIError({
+        message: "No membership found for this equb type",
+        status: NOT_FOUND,
+      });
     }
 
     return await Model.find({ member: membership._id })
@@ -148,11 +153,11 @@ exports.DeleteOne = async (req) => {
   }
 };
 
-exports.DeleteFromActiveRound = async (activeRound,member) => {
+exports.DeleteFromActiveRound = async (activeRound, member) => {
   try {
     const response = await Model.updateOne(
       {
-        round:activeRound,
+        round: activeRound,
         member,
       },
       { $set: { deleted: true } }

@@ -1,10 +1,13 @@
 const app = require("express").Router();
+const { validate } = require("express-validation");
 const controller = require("../controller/member");
 
 const { Authorize } = require("../../middleware/auth");
 const { ADMIN, USER } = require("../../utils/constants");
+const { login } = require("../validations/member");
+const { validateAndCovertPhoneNumber } = require("../../utils/functions");
 
-app.route("/login").post(controller.login);
+app.route("/login").post(validate(login),validateAndCovertPhoneNumber,controller.login);
   
 app
   .route("/")

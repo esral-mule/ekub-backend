@@ -12,7 +12,6 @@ const {
 } = require("../../middleware/auth");
 
 exports.Login = async (userData) => {
-  console.log(userData);
   const {
     user,
     accessToken
