@@ -1,4 +1,5 @@
 const app = require("express").Router();
+const { validate } = require("express-validation");
 const controller = require("../controller/contribution");
 
 const {
@@ -9,20 +10,21 @@ const {
     USER,
     MEMBER
 } = require("../../utils/constants");
+const { createContribution,getOne,deleteOne } = require("../validations/contribution");
 
 app.route("/")
     // .get(Authorize([ADMIN, USER]), controller.getAll)
-    .post(Authorize([ADMIN, USER]), controller.create)
+    .post(Authorize([ADMIN, USER]),validate(createContribution),controller.create)
 
 app.route("/round/:id")
-    .get(Authorize([ADMIN, USER]), controller.getAll)
+    .get(Authorize([ADMIN, USER]),validate(getOne), controller.getAll)
 
-app.route("/equbtype/:id").get(Authorize([MEMBER]),controller.getByEqubType)
+app.route("/equbtype/:id").get(Authorize([MEMBER]),validate(getOne),controller.getByEqubType)
 
 app.route("/:id")
-    .get(Authorize([ADMIN, USER]), controller.getOne)
+    .get(Authorize([ADMIN, USER]),validate(getOne), controller.getOne)
     .put(Authorize([ADMIN, USER]), controller.update)
-    .delete(Authorize([ADMIN, USER]), controller.deleteOne)
+    .delete(Authorize([ADMIN, USER]),validate(deleteOne), controller.deleteOne)
 
 
 module.exports = app;

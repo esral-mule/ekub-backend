@@ -2,9 +2,11 @@ const Joi = require("joi");
 
 module.exports = {
 
-  createBeneficiary: {
+  createContribution: {
     body: Joi.object({
-        uniqueId:Joi.string().required().regex(/^[a-fA-F0-9]{24}$/),
+        round:Joi.string().required().regex(/^[a-fA-F0-9]{24}$/),
+        member:Joi.string().required().regex(/^[a-fA-F0-9]{24}$/),
+        isPaid:Joi.boolean()
     }).options({ abortEarly: false })
   },
 

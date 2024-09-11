@@ -2,9 +2,15 @@ const Joi = require("joi");
 
 module.exports = {
 
-  createBeneficiary: {
+  startRound: {
     body: Joi.object({
-        uniqueId:Joi.string().required().regex(/^[a-fA-F0-9]{24}$/),
+        equbType:Joi.string().required().regex(/^[a-fA-F0-9]{24}$/),
+    }).options({ abortEarly: false })
+  },
+
+  addMemberRound: {
+    body: Joi.object({
+        member:Joi.string().required().regex(/^[a-fA-F0-9]{24}$/),
     }).options({ abortEarly: false })
   },
 

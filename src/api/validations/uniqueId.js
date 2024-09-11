@@ -2,9 +2,12 @@ const Joi = require("joi");
 
 module.exports = {
 
-  createBeneficiary: {
+  createUniqueId: {
     body: Joi.object({
-        uniqueId:Joi.string().required().regex(/^[a-fA-F0-9]{24}$/),
+        member:Joi.string().required().regex(/^[a-fA-F0-9]{24}$/),
+        equbType:Joi.string().required().regex(/^[a-fA-F0-9]{24}$/),
+        equbLevel:Joi.string().required().regex(/^[a-fA-F0-9]{24}$/),
+        isFull:Joi.boolean()
     }).options({ abortEarly: false })
   },
 
@@ -16,7 +19,7 @@ module.exports = {
     }).options({ abortEarly: false }),
   },
 
-  deleteOne: {
+  delteOne: {
     params: Joi.object({
       id: Joi.string()
         .regex(/^[a-fA-F0-9]{24}$/)
