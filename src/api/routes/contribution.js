@@ -10,7 +10,7 @@ const {
     USER,
     MEMBER
 } = require("../../utils/constants");
-const { createContribution,getOne,deleteOne } = require("../validations/contribution");
+const { createContribution,getOne,deleteOne,UpdateContribution } = require("../validations/contribution");
 
 app.route("/")
     // .get(Authorize([ADMIN, USER]), controller.getAll)
@@ -23,7 +23,7 @@ app.route("/equbtype/:id").get(Authorize([MEMBER]),validate(getOne),controller.g
 
 app.route("/:id")
     .get(Authorize([ADMIN, USER]),validate(getOne), controller.getOne)
-    .put(Authorize([ADMIN, USER]), controller.update)
+    .put(Authorize([ADMIN, USER]),validate(UpdateContribution), controller.update)
     .delete(Authorize([ADMIN, USER]),validate(deleteOne), controller.deleteOne)
 
 

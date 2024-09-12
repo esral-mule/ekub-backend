@@ -10,6 +10,13 @@ module.exports = {
     }).options({ abortEarly: false })
   },
 
+  UpdateContribution: {
+    body: Joi.object({
+      isPaid:Joi.boolean(),
+      punishment: Joi.number().max(100000000).min(-100000000)
+    }).options({ abortEarly: false })
+  },
+
   getOne: {
     params: Joi.object({
       id: Joi.string()

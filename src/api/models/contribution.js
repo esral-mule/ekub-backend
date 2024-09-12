@@ -20,6 +20,10 @@ const Contribution = new Schema({
         type: Schema.Types.ObjectId,
         ref: 'memberShips',
     },
+    punishment:{
+        type:Number,
+        default:0
+    },
     isPaid: {
         type: Boolean,
         default: false
