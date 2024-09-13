@@ -7,7 +7,8 @@ module.exports = {
         member:Joi.string().required().regex(/^[a-fA-F0-9]{24}$/),
         equbType:Joi.string().required().regex(/^[a-fA-F0-9]{24}$/),
         equbLevel:Joi.string().required().regex(/^[a-fA-F0-9]{24}$/),
-        uniqueId:Joi.string().required().regex(/^[a-fA-F0-9]{24}$/)
+        uniqueId:Joi.string().required().regex(/^[a-fA-F0-9]{24}$/),
+        isFull:Joi.boolean()
     }).options({ abortEarly: false })
   },
 
