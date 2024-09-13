@@ -6,6 +6,7 @@ module.exports = {
     body: Joi.object({
     title: Joi.string().required().min(1).max(30),
     contribution: Joi.number().min(1).max(100000000).required(),
+    equbType:Joi.string().required().regex(/^[a-fA-F0-9]{24}$/),
     }).options({ abortEarly: false }),
   },
 
