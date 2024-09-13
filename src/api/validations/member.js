@@ -16,7 +16,7 @@ module.exports = {
       password: Joi.string().min(6).max(128).required(),
       username: Joi.string().min(5).max(35),
       profilePicture: Joi.string().min(5).max(100),
-    }),
+    }).options({ abortEarly: false }),
   },
   getOne: {
     params: Joi.object({

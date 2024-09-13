@@ -9,8 +9,14 @@ const validateAndCovertPhoneNumber = (req, res, next) => {
   
   if (phoneNumber.length !== 10 || !(phoneNumber.startsWith("09"))) {
     const err = new APIError({
-      message: "invalid Phone Number",
+      message: "Validation Error",
       status: BAD_REQUEST,
+      errors:[
+        {
+          "field":"phoneNumber",
+          "messages":"invalid Phone Number"
+        }
+      ]
     });
     return next(err);
   }

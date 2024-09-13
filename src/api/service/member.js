@@ -16,12 +16,8 @@ exports.Login = async (userData) => {
 
 
 exports.Create = async (data) => {
-  try {
     const response = await Model.create(data);
     return response;
-  } catch (err) {
-    return err;
-  }
 };
 
 exports.GetOne = async (id) => {
