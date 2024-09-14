@@ -17,7 +17,7 @@ const { addMemberRound, startRound, getOne,deleteOne } = require("../validations
 app.route("/etype/:id")
     .get(Authorize([ADMIN, USER]), controller.getAll)
 
-app.route("/add-to-round")
+app.route("/add-to-round/:id")
     .post(Authorize([ADMIN, USER]),validate(addMemberRound), controller.addMemberToRound)
 
 app.route("/start")

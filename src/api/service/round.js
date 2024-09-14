@@ -2,6 +2,8 @@ const Model = require("../models/round");
 const EqubTypeModel = require('../models/equb-type')
 const ContributionModel = require('../models/contribution');
 const MemberModel = require('../models/membership');
+const { GetOne } = require("./membership");
+const MembershipModel = require("../models/membership");
 
 exports.Create = async (data) => {
     try {
@@ -36,15 +38,19 @@ exports.Create = async (data) => {
     }
 }
 
-exports.AddMemberToRound = async (data) => {
+exports.AddMemberToRound = async (req) => {
     try {
-        const activeRound = await Model.findOne({ closed: false })
+        const {
+            id
+        } = req.params
+        const memberShip = await MembershipModel.findById(req.body.member)
+        .populate("member equbType equbLevel uniqueId")
+        const activeRound = await Model.findOne({ closed: false,equbType:id })
         if (activeRound._id) {
             const res = await ContributionModel.create({
-                member: data.member,
+                member: memberShip._id,
                 round: activeRound._id
-            })
-
+            })            
             return res
         }
         return {
