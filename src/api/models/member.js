@@ -144,13 +144,13 @@ MemberModel.statics = {
     if (!user) {
       throw new APIError({
         message: INVALID_CREDENTIALS,
-        status: UNAUTHORIZED,
+        status: BAD_REQUEST,
       });
     }
     if (!(await user.matchPassword(password))) {
       throw new APIError({
         message: INVALID_CREDENTIALS,
-        status: UNAUTHORIZED,
+        status: BAD_REQUEST,
       });
     }
     return {
