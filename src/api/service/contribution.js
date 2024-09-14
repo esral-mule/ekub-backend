@@ -3,6 +3,7 @@ const { NOT_FOUND } = require("../../utils/constants");
 const Model = require("../models/contribution");
 const { CheckIsMember } = require("./membership");
 
+
 exports.Create = async (data) => {
   try {
     const response = await Model.create(data);
@@ -94,8 +95,12 @@ exports.GetAll = async (req) => {
 };
 
 exports.GetByEqubType = async (req) => {
-  try {
+  try {   
+    console.log("====>user",req.user);
+    
     const membership = await CheckIsMember(req);
+    console.log("====>membership",membership);
+    
     if (!membership) {
       throw new APIError({
         message: "No membership found for this equb type",
@@ -118,6 +123,8 @@ exports.GetByEqubType = async (req) => {
       })
       .exec();
   } catch (error) {
+    console.log("error",error);
+    
     return error;
   }
 };

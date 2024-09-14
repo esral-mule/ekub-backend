@@ -1,5 +1,5 @@
+const Contribution = require("../models/contribution");
 const Model = require("../models/membership");
-const { DeleteFromActiveRound } = require("./contribution");
 const { GetActive } = require("./round");
 const UniqueIdsService = require("./uniqueId");
 
@@ -25,13 +25,19 @@ exports.GetOne = async (id) => {
 };
 
 exports.CheckIsMember = async (req) => {
+  console.log("req", req);
+
   try {
+    console.log("req.user", req);
+
     const response = await Model.findOne({
       member: req.user,
       equbType: req.params.id,
     }).populate("member equbType equbLevel uniqueId");
     return response;
   } catch (err) {
+    console.log("err", err);
+
     return err;
   }
 };
@@ -103,7 +109,13 @@ exports.DeleteOne = async (req) => {
 
     const activeRound = await GetActive(membership.equbType);
     if (activeRound) {
-      await DeleteFromActiveRound(activeRound, membership._id);
+      await Contribution.updateOne(
+        {
+          round: activeRound,
+          member: membership._id,
+        },
+        { $set: { deleted: true } }
+      );
     }
     const response = await Model.updateOne(
       {
