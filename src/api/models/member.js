@@ -61,6 +61,11 @@ const MemberModel = new Schema(
       type: Boolean,
       default: false,
     },
+    house:{
+      type: Schema.Types.ObjectId,
+      ref: "users",
+      required: true
+    }
   },
   {
     timestamps: true,

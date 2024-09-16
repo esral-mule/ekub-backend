@@ -5,6 +5,7 @@ const {
   GetAll,
   Update,
   DeleteOne,
+  GetForHouse,
 } = require("../service/member");
 
 const { OK, CREATED } = require("../../utils/constants");
@@ -33,6 +34,18 @@ exports.create = async (req, res, next) => {
 exports.getAll = async (req, res, next) => {
   try {
     const response = await GetAll(req);
+    return res.status(OK).json({
+      data: response,
+      success: "SUCCESS",
+    });
+  } catch (err) {
+    return next(err);
+  }
+};
+
+exports.getForHouse = async (req, res, next) => {
+  try {
+    const response = await GetForHouse(req);
     return res.status(OK).json({
       data: response,
       success: "SUCCESS",

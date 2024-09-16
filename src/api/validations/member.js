@@ -16,6 +16,7 @@ module.exports = {
       password: Joi.string().min(6).max(128).required(),
       username: Joi.string().min(5).max(35),
       profilePicture: Joi.string().min(5).max(100),
+      house: Joi.string().regex(/^[a-fA-F0-9]{24}$/).required()
     }).options({ abortEarly: false }),
   },
   getOne: {

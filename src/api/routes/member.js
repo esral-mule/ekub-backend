@@ -11,9 +11,11 @@ app.route("/login").post(validate(login),validateAndCovertPhoneNumber,controller
   
 app
   .route("/")
-  .get(Authorize([ADMIN, USER]), controller.getAll)
+  .get(Authorize([ADMIN]), controller.getAll)
   .post(Authorize([ADMIN, USER]),validate(createMember),validateAndCovertPhoneNumber, controller.create);
-
+app
+  .route("/house/:id")
+  .get(Authorize([ADMIN,USER]), controller.getForHouse)
 
 app
   .route("/:id")

@@ -57,6 +57,33 @@ exports.GetAll = async (req) => {
   }
 };
 
+exports.GetForHouse = async (req) => {
+  try {
+    const { limit, page, queryName, searchQuery, sort } = req.query;
+    const { id } = req.params;
+    const skip = (page - 1) * (limit || 10);
+    const filter = {
+      house:id
+    };
+
+    if (queryName) {
+      filter[queryName] = {
+        $regex: searchQuery,
+        $options: "i",
+      };
+    }
+
+    const response = await Model.find(filter)
+      .skip(skip || 0)
+      .limit(limit || 1000)
+      .limit(limit);
+
+    return response;
+  } catch (err) {
+    return err;
+  }
+};
+
 exports.Update = async (req) => {
   try {
     const { body } = req;
