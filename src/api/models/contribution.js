@@ -28,12 +28,34 @@ const Contribution = new Schema({
         type: Boolean,
         default: false
     },
+    updateTimestamps: {
+        type: [Date],
+        default: []
+    },
     deleted: {
         type: Boolean,
         default: false
     }
 }, {
     timestamps: true,
+});
+
+// eslint-disable-next-line func-names
+Contribution.pre("save", async function save(next) {
+    try {
+        console.log("======================================> saving");
+    
+        if (this.isModified()) {
+            console.log("=================================> now");
+            
+            this.updateTimestamps.push(new Date());
+        }
+        return next();
+    } catch (err) {
+    return next(err);
+        
+    }
+
 });
 
 Contribution.statics = {

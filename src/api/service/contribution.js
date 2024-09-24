@@ -132,11 +132,12 @@ exports.Update = async (req) => {
   try {
     const { body } = req;
     const { id } = req.params;
-    const response = await Model.updateOne(
+    const response = await Model.findOneAndUpdate(
+      { _id: id },
       {
-        _id: id,
-      },
-      body
+        ...body,
+        $push: { updateTimestamps: new Date() }, 
+      }
     );
     return response;
   } catch (err) {
