@@ -40,24 +40,6 @@ const Contribution = new Schema({
     timestamps: true,
 });
 
-// eslint-disable-next-line func-names
-Contribution.pre("save", async function save(next) {
-    try {
-        console.log("======================================> saving");
-    
-        if (this.isModified()) {
-            console.log("=================================> now");
-            
-            this.updateTimestamps.push(new Date());
-        }
-        return next();
-    } catch (err) {
-    return next(err);
-        
-    }
-
-});
-
 Contribution.statics = {
     async get(id) {
         if (!Types.ObjectId.isValid(id)) {
