@@ -12,7 +12,6 @@ module.exports = {
 
   UpdateContribution: {
     body: Joi.object({
-      isPaid:Joi.boolean(),
       punishment: Joi.number().max(100000000).min(-100000000)
     }).options({ abortEarly: false })
   },

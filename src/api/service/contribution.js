@@ -133,9 +133,10 @@ exports.Update = async (req) => {
     const { body } = req;
     const { id } = req.params;
     const response = await Model.findOneAndUpdate(
-      { _id: id },
+      { _id: id ,isPaid:false},
       {
         ...body,
+        isPaid:true,
         $push: { updateTimestamps: new Date() }, 
       }
     );
